@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://www.fonang.com/web/index.php?c=site&a=entry&eid=1106&version_id=0 -->
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+
+</style>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>统计 -kuangkee</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="shortcut icon" href="http://www.fonang.com/web/resource/images/favicon.ico">
+<link href="./01-search-count_files/bootstrap.min.css" rel="stylesheet">
+<link href="./01-search-count_files/common.css" rel="stylesheet">
+<script src="./01-search-count_files/s.php"></script>
+<script type="text/javascript">
+	if(navigator.appName == 'Microsoft Internet Explorer'){
+		if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+			alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+		}
+	}
+	window.sysinfo = {
+		'uniacid': '26',		'acid': '26',				'uid': '16',		'isfounder': 0,
+		'family': 'x',
+		'siteroot': 'http://www.fonang.com/',
+		'siteurl': 'http://www.fonang.com/web/index.php?c=site&a=entry&eid=1106&version_id=0',
+		'attachurl': 'http://www.fonang.com/attachment/',
+		'attachurl_local': 'http://www.fonang.com/attachment/',
+		'attachurl_remote': '',
+		'module' : {'url' : 'http://www.fonang.com/addons/wx_search/', 'name' : 'wx_search'},
+		'cookie' : {'pre': 'c39b_'},
+		'account' : {"acid":"26","uniacid":"26","token":"iLpQ5RaJyZhOZl5fPBJJGfGEoOqo0Ha4","access_token":"","encodingaeskey":"cjrPObOFOYLlOqAgllaseGcy95haahz4HAzRhLLZqOs","level":"4","name":"\u6ce8\u518c","account":"kuanghee@outlook.com","original":"gh_652550a2c1e5","signature":"","country":"","province":"","city":"","username":"","password":"","lastupdate":"0","key":"wx503ea6e774b89a36","secret":"ef490668f7f0f6c17034cdc6a11b6864","styleid":"0","subscribeurl":"","auth_refresh_token":"","type":"1","isconnect":"1","isdeleted":"0","endtime":null,"uid":null,"starttime":null,"groups":{"22":{"groupid":"22","uniacid":"26","title":"\u9ed8\u8ba4\u4f1a\u5458\u7ec4","credit":"0","orderlist":"0","isdefault":"1"}},"setting":{"uniacid":"26","passport":"","oauth":{"account":"26","host":""},"jsauth_acid":"0","uc":"","notify":"","creditnames":{"credit1":{"title":"\u79ef\u5206","enabled":1},"credit2":{"title":"\u4f59\u989d","enabled":1}},"creditbehaviors":{"activity":"credit1","currency":"credit2"},"welcome":"","default":"","default_message":"","shortcuts":"","payment":{"wechat":{"switch":"1","version":"2","mchid":"1245577902","apikey":"12345667788999fjgkkkllllllssssss","account":"26","signkey":"12345667788999fjgkkkllllllssssss"}},"stat":"","menuset":"","default_site":"21","sync":"1","recharge":"","tplnotice":"","grouplevel":"0","mcplugin":"","exchange_enable":"0","coupon_type":"0","statistics":"","bind_domain":""},"grouplevel":"0","logo":"http:\/\/fonang.com\/attachment\/headimg_26.jpg?time=1511504750","qrcode":"http:\/\/fonang.com\/attachment\/qrcode_26.jpg?time=1511504750","switchurl":".\/index.php?c=account&a=display&do=switch&uniacid=26","sms":0,"setmeal":{"uid":-1,"username":"\u521b\u59cb\u4eba","timelimit":"\u672a\u8bbe\u7f6e","groupid":"-1","groupname":"\u6240\u6709\u670d\u52a1"}},
+		'server' : {'php' : '5.4.28'},
+	};
+</script>
+<script>var require = { urlArgs: 'v=20170915' };</script>
+<script type="text/javascript" src="./01-search-count_files/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./01-search-count_files/bootstrap.min.js"></script>
+<script type="text/javascript" src="./01-search-count_files/util.js"></script>
+<script type="text/javascript" src="./01-search-count_files/common.min.js"></script>
+<script type="text/javascript" src="./01-search-count_files/require.js"></script>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="moment" src="./01-search-count_files/moment.js"></script>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="loadcss" src="./01-search-count_files/loadcss.min.js"></script>
+<link type="text/css" rel="stylesheet" href="./01-search-count_files/daterangepicker.css">
+<link type="text/css" rel="stylesheet" href="./01-search-count_files/search-count.css">
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="daterangepicker" src="./01-search-count_files/daterangepicker.js"></script>
+</head>
+<body>
+	<div class="loader" style="display: none">
+		<div class="la-ball-clip-rotate">
+			<div></div>
+		</div>
+	</div>
+	<div class="skin-black" data-skin="black">
+		<div class="main">
+			<div class="container">
+				<div class="panel panel-content main-panel-content ">
+					<div class="panel-body clearfix main-panel-body " style="min-height: 633px;">
+						<div class="right-content">
+							<div class="content" style="min-height: 591px;">
+								<!--系统提示-->
+								<!--end  系统提示-->
+								<ul class="nav nav-tabs">
+									<li class="active"><a
+										href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=display&amp;do=count&amp;m=wx_search">统计结果</a></li>
+								</ul>
+								<div class="main">
+									<div style="width: 100%; padding: 15px;" class="xiugai">
+										今日总计搜索条数 <span>72条</span><br> <br> 今日搜索客户人数 <span>28人</span><br><br>
+									</div>
+									<div class="panel panel-info">
+										<div class="panel-heading">筛选</div>
+										<div class="panel-body">
+											<form action="http://www.fonang.com/web/index.php"
+												method="get" class="form-horizontal" role="form">
+												<input type="hidden" name="c" value="site"> <input
+													type="hidden" name="a" value="entry"> <input
+													type="hidden" name="m" value="wx_search"> <input
+													type="hidden" name="do" value="count"> <input
+													type="hidden" name="op" value="display">
+
+												<div class="form-group">
+													<label
+														class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">有无结果</label>
+													<div class="col-xs-12 col-sm-8 col-lg-9">
+														<select name="status" class="form-control">
+															<option value="2">全部结果</option>
+															<option value="1">有结果</option>
+															<option value="0">无结果</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label
+														class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">分类</label>
+													<div class="col-xs-6 col-sm-4">
+														<select class="form-control" style="margin-right: 15px;"
+															name="cate_1" id="pcate_1"
+															onchange="fetchChildCategory(this.options[this.selectedIndex].value)">
+															<option value="0">请选择一级分类</option>
+															<option value="44">小松</option>
+															<option value="45">卡特</option>
+															<option value="46">日立</option>
+															<option value="47">神钢</option>
+															<option value="48">三一</option>
+															<option value="49">加藤</option>
+															<option value="50">住友</option>
+															<option value="51">现代</option>
+															<option value="52">凯斯</option>
+															<option value="53">沃尔沃</option>
+															<option value="88">斗山</option>
+															<option value="91">徐工</option>
+															<option value="89">装载机</option>
+														</select>
+													</div>
+													<!-- <div class="col-xs-6 col-sm-4">
+									                    <select class="form-control input-medium" id="cate_2" name="cate_2">
+									                        <option value="0">请选择二级分类</option>
+									                                            </select>
+									                </div> -->
+												</div>
+
+												<div class="form-group">
+													<label
+														class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">关键字</label>
+													<div class="col-xs-12 col-sm-8 col-lg-9">
+														<input class="form-control" name="keyword" id="" type="text" value="">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">名字</label>
+													<div class="col-xs-12 col-sm-8 col-lg-9">
+														<input class="form-control" name="username" id="" type="text" value="">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label
+														class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">手机号</label>
+													<div class="col-xs-12 col-sm-8 col-lg-9">
+														<input class="form-control" name="mobile" id=""
+															type="text" value="">
+													</div>
+												</div>
+
+			<div class="form-group">
+				<label
+					class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">搜索时间段</label>
+				<div class="col-sm-10 col-xs-12">
+
+				<script type="text/javascript">
+					require(["daterangepicker"], function(){
+						$(function(){
+							$(".daterange.daterange-time").each(function(){
+								var elm = this;
+								$(this).daterangepicker({
+									startDate: $(elm).prev().prev().val(),
+									endDate: $(elm).prev().val(),
+									format: "YYYY-MM-DD HH:mm",
+									timePicker: true,
+									timePicker12Hour : false,
+									timePickerIncrement: 1,
+									minuteStep: 1
+								}, function(start, end){
+									$(elm).find(".date-title").html(start.toDateTimeStr() + " 至 " + end.toDateTimeStr());
+									$(elm).prev().prev().val(start.toDateTimeStr());
+									$(elm).prev().val(end.toDateTimeStr());
+								});
+							});
+						});
+					});
+				</script>
+
+				<input name="joinTime[start]" type="hidden" value="2017-12-26 18:49"> 
+				<input name="joinTime[end]" type="hidden" value="2017-12-26 18:49">
+				<button class="btn btn-default daterange daterange-time" type="button">
+					<span class="date-title">2017-12-26 18:49 至 2017-12-26 18:49</span> <i class="fa fa-calendar"></i>
+				</button>
+			</div>
+		</div>
+
+												<div class="form-group">
+													<label class="col-xs-12 col-sm-3 col-md-1 control-label"></label>
+													<div class="col-sm-8 col-xs-12">
+														<!-- 
+		<script type="text/javascript">
+			window._category = {"53":{"72":["72","\u5b81\u590f"],"73":["73","\u9752\u6d77"],"74":["74","\u9655\u897f"],"75":["75","\u7518\u8083"],"76":["76","\u65b0\u7586"],"77":["77","\u56db\u5ddd"],"78":["78","\u8d35\u5dde"],"79":["79","\u4e91\u5357"],"80":["80","\u91cd\u5e86"],"81":["81","\u897f\u85cf"],"82":["82","\u8fbd\u5b81"],"83":["83","\u5409\u6797"],"84":["84","\u9ed1\u9f99\u6c5f"],"85":["85","\u9999\u6e2f"],"86":["86","\u6fb3\u95e8"],"87":["87","\u53f0\u6e7e"],"54":["54","\u5c71\u4e1c"],"55":["55","\u6c5f\u82cf"],"56":["56","\u4e0a\u6d77"],"57":["57","\u6d59\u6c5f"],"58":["58","\u5b89\u5fbd"],"59":["59","\u798f\u5efa"],"60":["60","\u6c5f\u897f"],"61":["61","\u5e7f\u4e1c"],"62":["62","\u5e7f\u897f"],"63":["63","\u6d77\u5357"],"64":["64","\u6cb3\u5357"],"65":["65","\u6e56\u5357"],"66":["66","\u6e56\u5317"],"67":["67","\u5317\u4eac"],"68":["68","\u5929\u6d25"]}};
+		</script>
+		<script type="text/javascript">
+			function renderCategory(obj, name){
+				var index = obj.options[obj.selectedIndex].value;
+				require(['jquery', 'util'], function($, u){
+					$selectChild = $('#'+name+'_child');
+					var html = '<option value="0">请选择二级分类</option>';
+					if (!window['_'+name] || !window['_'+name][index]) {
+						$selectChild.html(html);
+						return false;
+					}
+					for(var i=0; i< window['_'+name][index].length; i++){
+						html += '<option value="'+window['_'+name][index][i]['id']+'">'+window['_'+name][index][i]['name']+'</option>';
+					}
+					$selectChild.html(html);
+				});
+			}
+		</script>
+					<div class="row row-fix tpl-category-container">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<select class="form-control tpl-category-parent we7-select" id="category_parent" name="category[parentid]" onchange="renderCategory(this,'category')">
+					<option value="0">请选择一级分类</option>
+				</select>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+				<select class="form-control tpl-category-child we7-select" id="category_child" name="category[childid]">
+					<option value="0">请选择二级分类</option>
+				</select>
+			</div>
+		</div>
+	 -->
+													</div>
+													<div class="col-xs-12 col-sm-2 col-lg-2">
+														<button class="btn btn-default">
+															<i class="fa fa-search"></i> 搜索
+														</button>
+														<button name="export" value="export" class="btn btn-default">
+															<i class="fa fa-download"></i> 导出数据
+														</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+									<div style="width: 100%; padding: 15px;" class="xiugai">
+									</div>
+
+									<div style="padding: 15px;">
+										<table class="table table-hover">
+											<thead class="navbar-inner">
+												<tr>
+													<th style="width: 20%">姓名</th>
+													<th style="width: 20%">手机号码</th>
+													<th style="width: 10%">品牌</th>
+													<th style="width: 10%">关键字</th>
+													<th style="width: 20%">时间</th>
+													<th style="width: 10%">状态</th>
+													<th style="width: 10%">操作</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>A校泵增压机工程出租1394543543</td>
+													<td>13945435432</td>
+													<td>小松</td>
+													<td>ca135</td>
+													<td>2017-12-26 18:29</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10188&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>李宜亮（电路 ,空调）181718334</td>
+													<td>18171833483</td>
+													<td>神钢</td>
+													<td>e02</td>
+													<td>2017-12-26 18:26</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10187&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>1974</td>
+													<td>18653420832</td>
+													<td>小松</td>
+													<td>E02</td>
+													<td>2017-12-26 18:24</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10186&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>震动锤陈波</td>
+													<td>13611500950</td>
+													<td>日立</td>
+													<td>c</td>
+													<td>2017-12-26 18:08</td>
+													<td><label class="label label-default">无结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10184&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>震动锤陈波</td>
+													<td>13611500950</td>
+													<td>日立</td>
+													<td>c</td>
+													<td>2017-12-26 18:08</td>
+													<td><label class="label label-default">无结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10185&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>寻觅……</td>
+													<td>18760968148</td>
+													<td>三一</td>
+													<td>手柄</td>
+													<td>2017-12-26 17:50</td>
+													<td><label class="label label-default">无结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10183&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>寻觅……</td>
+													<td>18760968148</td>
+													<td>三一</td>
+													<td>手柄卡</td>
+													<td>2017-12-26 17:49</td>
+													<td><label class="label label-default">无结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10182&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>天麒</td>
+													<td>18388074414</td>
+													<td>卡特</td>
+													<td>110</td>
+													<td>2017-12-26 17:36</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10181&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>依弟</td>
+													<td>15519226223</td>
+													<td>小松</td>
+													<td>小松360没力</td>
+													<td>2017-12-26 17:26</td>
+													<td><label class="label label-default">无结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10180&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>依弟</td>
+													<td>15519226223</td>
+													<td>小松</td>
+													<td>小松360</td>
+													<td>2017-12-26 17:25</td>
+													<td><label class="label label-default">无结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10179&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>阳刚梦男</td>
+													<td>15393617828</td>
+													<td>斗山</td>
+													<td>挖掘无力</td>
+													<td>2017-12-26 17:23</td>
+													<td><label class="label label-default">无结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10178&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>依弟</td>
+													<td>15519226223</td>
+													<td>小松</td>
+													<td>e02</td>
+													<td>2017-12-26 17:23</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10177&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>天麒</td>
+													<td>18388074414</td>
+													<td>卡特</td>
+													<td>96</td>
+													<td>2017-12-26 17:17</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10176&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>天麒</td>
+													<td>18388074414</td>
+													<td>卡特</td>
+													<td>110</td>
+													<td>2017-12-26 17:17</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10175&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>天麒</td>
+													<td>18388074414</td>
+													<td>卡特</td>
+													<td>167</td>
+													<td>2017-12-26 17:16</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10174&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+												<tr>
+													<td>天麒</td>
+													<td>18388074414</td>
+													<td>卡特</td>
+													<td>168</td>
+													<td>2017-12-26 17:15</td>
+													<td><label class="label label-info">有结果</label></td>
+													<td><a
+														href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;op=deleted&amp;id=10170&amp;do=count&amp;m=wx_search"
+														style="margin-left: 0;"
+														onclick="return confirm(&#39;此操作不可恢复，确认删除？&#39;);return false;">删除</a></td>
+												</tr>
+											</tbody>
+										</table>
+										<div>
+											<ul class="pagination pagination-centered">
+												<li class="active"><a href="javascript:;">1</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=2">2</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=3">3</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=4">4</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=5">5</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=6">6</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=7">7</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=8">8</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=9">9</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=10">10</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=2"
+													class="pager-nav">下一页»</a></li>
+												<li><a
+													href="http://www.fonang.com/web/index.php?c=site&amp;a=entry&amp;eid=1106&amp;version_id=0&amp;page=489"
+													class="pager-nav">尾页</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="daterangepicker dropdown-menu opensright">
+		<div class="calendar right">
+			<div class="calendar-date">
+				<table class="table-condensed">
+					<thead>
+						<tr>
+							<th></th>
+							<th colspan="5" class="month">12月 2017</th>
+							<th class="next available"><i
+								class="fa fa-arrow-right icon-arrow-right glyphicon glyphicon-arrow-right"></i></th>
+						</tr>
+						<tr>
+							<th>日</th>
+							<th>一</th>
+							<th>二</th>
+							<th>三</th>
+							<th>四</th>
+							<th>五</th>
+							<th>六</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="off disabled" data-title="r0c0">26</td>
+							<td class="off disabled" data-title="r0c1">27</td>
+							<td class="off disabled" data-title="r0c2">28</td>
+							<td class="off disabled" data-title="r0c3">29</td>
+							<td class="off disabled" data-title="r0c4">30</td>
+							<td class="off disabled" data-title="r0c5">1</td>
+							<td class="off disabled" data-title="r0c6">2</td>
+						</tr>
+						<tr>
+							<td class="off disabled" data-title="r1c0">3</td>
+							<td class="off disabled" data-title="r1c1">4</td>
+							<td class="off disabled" data-title="r1c2">5</td>
+							<td class="off disabled" data-title="r1c3">6</td>
+							<td class="off disabled" data-title="r1c4">7</td>
+							<td class="off disabled" data-title="r1c5">8</td>
+							<td class="off disabled" data-title="r1c6">9</td>
+						</tr>
+						<tr>
+							<td class="off disabled" data-title="r2c0">10</td>
+							<td class="off disabled" data-title="r2c1">11</td>
+							<td class="off disabled" data-title="r2c2">12</td>
+							<td class="off disabled" data-title="r2c3">13</td>
+							<td class="off disabled" data-title="r2c4">14</td>
+							<td class="off disabled" data-title="r2c5">15</td>
+							<td class="off disabled" data-title="r2c6">16</td>
+						</tr>
+						<tr>
+							<td class="off disabled" data-title="r3c0">17</td>
+							<td class="off disabled" data-title="r3c1">18</td>
+							<td class="off disabled" data-title="r3c2">19</td>
+							<td class="off disabled" data-title="r3c3">20</td>
+							<td class="off disabled" data-title="r3c4">21</td>
+							<td class="off disabled" data-title="r3c5">22</td>
+							<td class="off disabled" data-title="r3c6">23</td>
+						</tr>
+						<tr>
+							<td class="off disabled" data-title="r4c0">24</td>
+							<td class="off disabled" data-title="r4c1">25</td>
+							<td class="available active start-date end-date"
+								data-title="r4c2">26</td>
+							<td class="available" data-title="r4c3">27</td>
+							<td class="available" data-title="r4c4">28</td>
+							<td class="available" data-title="r4c5">29</td>
+							<td class="available" data-title="r4c6">30</td>
+						</tr>
+						<tr>
+							<td class="available" data-title="r5c0">31</td>
+							<td class="available off" data-title="r5c1">1</td>
+							<td class="available off" data-title="r5c2">2</td>
+							<td class="available off" data-title="r5c3">3</td>
+							<td class="available off" data-title="r5c4">4</td>
+							<td class="available off" data-title="r5c5">5</td>
+							<td class="available off" data-title="r5c6">6</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="calendar-time">
+				<select class="hourselect"><option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18" selected="selected">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option></select> : <select class="minuteselect">
+					<option value="0">00</option>
+					<option value="1">01</option>
+					<option value="2">02</option>
+					<option value="3">03</option>
+					<option value="4">04</option>
+					<option value="5">05</option>
+					<option value="6">06</option>
+					<option value="7">07</option>
+					<option value="8">08</option>
+					<option value="9">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+					<option value="32">32</option>
+					<option value="33">33</option>
+					<option value="34">34</option>
+					<option value="35">35</option>
+					<option value="36">36</option>
+					<option value="37">37</option>
+					<option value="38">38</option>
+					<option value="39">39</option>
+					<option value="40">40</option>
+					<option value="41">41</option>
+					<option value="42">42</option>
+					<option value="43">43</option>
+					<option value="44">44</option>
+					<option value="45">45</option>
+					<option value="46">46</option>
+					<option value="47">47</option>
+					<option value="48">48</option>
+					<option value="49" selected="selected">49</option>
+					<option value="50">50</option>
+					<option value="51">51</option>
+					<option value="52">52</option>
+					<option value="53">53</option>
+					<option value="54">54</option>
+					<option value="55">55</option>
+					<option value="56">56</option>
+					<option value="57">57</option>
+					<option value="58">58</option>
+					<option value="59">59</option></select>
+			</div>
+		</div>
+		<div class="calendar left">
+			<div class="calendar-date">
+				<table class="table-condensed">
+					<thead>
+						<tr>
+							<th class="prev available"><i
+								class="fa fa-arrow-left icon-arrow-left glyphicon glyphicon-arrow-left"></i></th>
+							<th colspan="5" class="month">12月 2017</th>
+							<th class="next available"><i
+								class="fa fa-arrow-right icon-arrow-right glyphicon glyphicon-arrow-right"></i></th>
+						</tr>
+						<tr>
+							<th>日</th>
+							<th>一</th>
+							<th>二</th>
+							<th>三</th>
+							<th>四</th>
+							<th>五</th>
+							<th>六</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="available off" data-title="r0c0">26</td>
+							<td class="available off" data-title="r0c1">27</td>
+							<td class="available off" data-title="r0c2">28</td>
+							<td class="available off" data-title="r0c3">29</td>
+							<td class="available off" data-title="r0c4">30</td>
+							<td class="available" data-title="r0c5">1</td>
+							<td class="available" data-title="r0c6">2</td>
+						</tr>
+						<tr>
+							<td class="available" data-title="r1c0">3</td>
+							<td class="available" data-title="r1c1">4</td>
+							<td class="available" data-title="r1c2">5</td>
+							<td class="available" data-title="r1c3">6</td>
+							<td class="available" data-title="r1c4">7</td>
+							<td class="available" data-title="r1c5">8</td>
+							<td class="available" data-title="r1c6">9</td>
+						</tr>
+						<tr>
+							<td class="available" data-title="r2c0">10</td>
+							<td class="available" data-title="r2c1">11</td>
+							<td class="available" data-title="r2c2">12</td>
+							<td class="available" data-title="r2c3">13</td>
+							<td class="available" data-title="r2c4">14</td>
+							<td class="available" data-title="r2c5">15</td>
+							<td class="available" data-title="r2c6">16</td>
+						</tr>
+						<tr>
+							<td class="available" data-title="r3c0">17</td>
+							<td class="available" data-title="r3c1">18</td>
+							<td class="available" data-title="r3c2">19</td>
+							<td class="available" data-title="r3c3">20</td>
+							<td class="available" data-title="r3c4">21</td>
+							<td class="available" data-title="r3c5">22</td>
+							<td class="available" data-title="r3c6">23</td>
+						</tr>
+						<tr>
+							<td class="available" data-title="r4c0">24</td>
+							<td class="available" data-title="r4c1">25</td>
+							<td class="available active start-date end-date"
+								data-title="r4c2">26</td>
+							<td class="available" data-title="r4c3">27</td>
+							<td class="available" data-title="r4c4">28</td>
+							<td class="available" data-title="r4c5">29</td>
+							<td class="available" data-title="r4c6">30</td>
+						</tr>
+						<tr>
+							<td class="available" data-title="r5c0">31</td>
+							<td class="available off" data-title="r5c1">1</td>
+							<td class="available off" data-title="r5c2">2</td>
+							<td class="available off" data-title="r5c3">3</td>
+							<td class="available off" data-title="r5c4">4</td>
+							<td class="available off" data-title="r5c5">5</td>
+							<td class="available off" data-title="r5c6">6</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="calendar-time">
+				<select class="hourselect"><option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18" selected="selected">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option></select> : <select class="minuteselect">
+					<option	value="0">00</option>
+					<option value="1">01</option>
+					<option value="2">02</option>
+					<option value="3">03</option>
+					<option value="4">04</option>
+					<option value="5">05</option>
+					<option value="6">06</option>
+					<option value="7">07</option>
+					<option value="8">08</option>
+					<option value="9">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+					<option value="32">32</option>
+					<option value="33">33</option>
+					<option value="34">34</option>
+					<option value="35">35</option>
+					<option value="36">36</option>
+					<option value="37">37</option>
+					<option value="38">38</option>
+					<option value="39">39</option>
+					<option value="40">40</option>
+					<option value="41">41</option>
+					<option value="42">42</option>
+					<option value="43">43</option>
+					<option value="44">44</option>
+					<option value="45">45</option>
+					<option value="46">46</option>
+					<option value="47">47</option>
+					<option value="48">48</option>
+					<option value="49" selected="selected">49</option>
+					<option value="50">50</option>
+					<option value="51">51</option>
+					<option value="52">52</option>
+					<option value="53">53</option>
+					<option value="54">54</option>
+					<option value="55">55</option>
+					<option value="56">56</option>
+					<option value="57">57</option>
+					<option value="58">58</option>
+					<option value="59">59</option>
+					</select>
+			</div>
+		</div>
+		<div class="ranges">
+			<ul>
+				<li>今天</li>
+				<li>一周内</li>
+				<li>二周内</li>
+				<li>一月内</li>
+				<li class="active">日期范围</li>
+			</ul>
+			<div class="range_inputs">
+				<div class="daterangepicker_start_input">
+					<label for="daterangepicker_start">从</label><input
+						class="input-mini" type="text" name="daterangepicker_start"
+						value="" readonly="readonly">
+				</div>
+				<div class="daterangepicker_end_input">
+					<label for="daterangepicker_end">至</label><input class="input-mini"
+						type="text" name="daterangepicker_end" value=""
+						readonly="readonly">
+				</div>
+				<button class="applyBtn btn btn-small btn-sm btn-success">确定</button>
+				&nbsp;
+				<button class="cancelBtn btn btn-small btn-sm btn-default">取消</button>
+			</div>
+		</div>
+	</div>
+	
+<script type="text/javascript">
+    var category = {"53":{"72":["72","\u5b81\u590f"],"73":["73","\u9752\u6d77"],"74":["74","\u9655\u897f"],"75":["75","\u7518\u8083"],"76":["76","\u65b0\u7586"],"77":["77","\u56db\u5ddd"],"78":["78","\u8d35\u5dde"],"79":["79","\u4e91\u5357"],"80":["80","\u91cd\u5e86"],"81":["81","\u897f\u85cf"],"82":["82","\u8fbd\u5b81"],"83":["83","\u5409\u6797"],"84":["84","\u9ed1\u9f99\u6c5f"],"85":["85","\u9999\u6e2f"],"86":["86","\u6fb3\u95e8"],"87":["87","\u53f0\u6e7e"],"54":["54","\u5c71\u4e1c"],"55":["55","\u6c5f\u82cf"],"56":["56","\u4e0a\u6d77"],"57":["57","\u6d59\u6c5f"],"58":["58","\u5b89\u5fbd"],"59":["59","\u798f\u5efa"],"60":["60","\u6c5f\u897f"],"61":["61","\u5e7f\u4e1c"],"62":["62","\u5e7f\u897f"],"63":["63","\u6d77\u5357"],"64":["64","\u6cb3\u5357"],"65":["65","\u6e56\u5357"],"66":["66","\u6e56\u5317"],"67":["67","\u5317\u4eac"],"68":["68","\u5929\u6d25"]}};
+
+    $(function () {
+        window.optionchanged = false;
+        $('#myTab a').click(function (e) {
+            e.preventDefault();//阻止a链接的跳转行为
+            $(this).tab('show');//显示当前选中的链接及关联的content
+        })
+    });
+</script>
+<script>
+	if(typeof $.fn.tooltip != 'function' || typeof $.fn.tab != 'function' || typeof $.fn.modal != 'function' || typeof $.fn.dropdown != 'function') {
+		require(['bootstrap']);
+	}
+</script>
+<script type="text/javascript" src="./01-search-count_files/jquery.gcjs.js"></script>
+<script type="text/javascript" src="./01-search-count_files/jquery.form.js"></script>
+<script type="text/javascript" src="./01-search-count_files/tooltipbox.js"></script>
+<script language="javascript">
+	function fetchChildCategory(cid) {
+		var html = '<option value="0">请选择二级分类</option>';
+		if (!category || !category[cid]) {
+			$('#cate_2').html(html);
+			return false;
+		}
+		for (i in category[cid]) {
+			html += '<option value="'+category[cid][i][0]+'">'+category[cid][i][1]+'</option>';
+		}
+		$('#cate_2').html(html);
+	}
+</script>
+</body>
+</html>

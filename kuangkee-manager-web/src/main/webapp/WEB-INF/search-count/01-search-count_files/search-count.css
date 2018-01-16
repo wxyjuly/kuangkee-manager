@@ -1,0 +1,78 @@
+.red {
+	float: left;
+	color: red
+}
+
+.white {
+	float: left;
+	color: #fff
+}
+
+.tooltipbox {
+	background: #fef8dd;
+	border: 1px solid #c40808;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: center;
+	height: 20px;
+	color: #c40808;
+	padding: 2px 5px 1px 5px;
+	border-radius: 3px;
+	z-index: 1000;
+}
+
+.red {
+	float: left;
+	color: red
+}
+
+.xiugai {
+	font-size: 2rem;
+}
+
+.xiugai span {
+	color: red;
+	float: right;
+	margin-right: 20%;
+}
+
+select.hourselect, .daterangepicker select.minuteselect {
+	width: 80px !important;
+}
+
+@charset "UTF-8";
+
+[
+ng\:cloak
+]
+,
+[
+ng-cloak
+]
+,
+[
+data-ng-cloak
+]
+,
+[
+x-ng-cloak
+] ,
+.ng-cloak ,
+.x-ng-cloak ,
+.ng-hide 
+:not 
+( .ng-hide-animate ){ display : none !
+important ;
+}
+ng\:form {
+	display: block;
+}
+
+.ng-animate-shim {
+	visibility: hidden;
+}
+
+.ng-anchor {
+	position: absolute;
+}
