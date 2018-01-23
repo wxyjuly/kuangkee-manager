@@ -1,4 +1,4 @@
-package com.kuangkee.search.mapper;
+package com.kuangkee.search.mapper.generate;
 
 import com.kuangkee.search.pojo.Brand;
 import com.kuangkee.search.pojo.BrandExample;

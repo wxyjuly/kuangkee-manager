@@ -15,7 +15,7 @@ import com.kuangkee.common.pojo.req.ArticleReq;
 import com.kuangkee.common.utils.DateTimeUtil;
 import com.kuangkee.common.utils.check.MatchUtil;
 import com.kuangkee.common.utils.constant.Constants;
-import com.kuangkee.search.mapper.ArticleMapper;
+import com.kuangkee.search.mapper.generate.ArticleMapper;
 import com.kuangkee.search.pojo.Article;
 import com.kuangkee.search.pojo.ArticleExample;
 import com.kuangkee.service.IArticleService;
@@ -101,9 +101,6 @@ public class ArticleServiceImpl implements IArticleService {
 		
 		if(!MatchUtil.isEmpty(subTitle)) {
 			criteria.andSubTitleLike(subTitle) ;
-		}
-		if(!MatchUtil.isEmpty(url)) {
-			criteria.andUrlLike(url) ;
 		}
 		if(!MatchUtil.isEmpty(sourceUrl)) {
 			criteria.andSourceUrlLike(sourceUrl) ;

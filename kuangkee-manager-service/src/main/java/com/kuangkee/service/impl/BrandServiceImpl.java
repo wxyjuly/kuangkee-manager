@@ -13,7 +13,7 @@ import com.kuangkee.common.pojo.EUDataGridResult;
 import com.kuangkee.common.pojo.KuangkeeResult;
 import com.kuangkee.common.utils.check.MatchUtil;
 import com.kuangkee.common.utils.constant.Constants;
-import com.kuangkee.search.mapper.BrandMapper;
+import com.kuangkee.search.mapper.generate.BrandMapper;
 import com.kuangkee.search.pojo.Brand;
 import com.kuangkee.search.pojo.BrandExample;
 import com.kuangkee.service.IBrandService;

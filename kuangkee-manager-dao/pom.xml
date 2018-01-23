@@ -6,17 +6,12 @@
 		<artifactId>kuangkee-manager</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>kuangkee-manager-service</artifactId>
+	<artifactId>kuangkee-manager-dao</artifactId>
 	<!-- 依赖管理 -->
 	<dependencies>
 		<dependency>
 			<groupId>com.kuangkee</groupId>
 			<artifactId>kuangkee-manager-mapper</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.kuangkee</groupId>
-			<artifactId>kuangkee-manager-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<!-- Spring -->

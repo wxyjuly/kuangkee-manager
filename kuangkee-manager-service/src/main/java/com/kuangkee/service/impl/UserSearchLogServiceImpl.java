@@ -15,7 +15,7 @@ import com.kuangkee.common.pojo.req.UserSearchLogReq;
 import com.kuangkee.common.utils.DateTimeUtil;
 import com.kuangkee.common.utils.check.MatchUtil;
 import com.kuangkee.common.utils.constant.Constants;
-import com.kuangkee.search.mapper.UserSearchLogMapper;
+import com.kuangkee.search.mapper.generate.UserSearchLogMapper;
 import com.kuangkee.search.pojo.UserSearchLog;
 import com.kuangkee.search.pojo.UserSearchLogExample;
 import com.kuangkee.service.IUserSearchLogService;

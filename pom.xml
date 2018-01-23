@@ -19,6 +19,7 @@
 	<modules>
 		<module>kuangkee-manager-pojo</module>
 		<module>kuangkee-manager-mapper</module>
+		<module>kuangkee-manager-dao</module>
 		<module>kuangkee-manager-service</module>
 		<module>kuangkee-manager-web</module>
 	</modules>
