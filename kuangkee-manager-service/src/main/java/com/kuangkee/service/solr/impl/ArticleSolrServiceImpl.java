@@ -14,6 +14,7 @@ import com.kuangkee.search.pojo.Article;
 import com.kuangkee.service.IArticleService;
 import com.kuangkee.service.solr.IArticleSolrService;
 
+
 @Service
 public class ArticleSolrServiceImpl implements IArticleSolrService {
 

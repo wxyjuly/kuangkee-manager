@@ -8,12 +8,14 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<!-- 扫描包加载Service实现类 -->
-<!-- 	<context:component-scan base-package="com.kuangkee" use-default-filters="false">
-		<context:include-filter type="regex" expression="com.kuangkee.service.*" />
-		<context:include-filter type="regex" expression="com.kuangkee.dao.*" />
-	</context:component-scan> -->
-	
-	<!-- 扫描包加载Service实现类 -->
-	<context:component-scan base-package="com.kuangkee.service,com.kuangkee.dao"/>
+	<!-- 配置SolrServer对象 -->
+	<!-- 单机版 -->
+	<bean id="httpSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg name="baseURL" value="${SOLR.SERVER.URL}"></constructor-arg>
+	</bean>
+	<!-- 集群版 -->
+<!-- 	<bean id="cloudSolrServer" class="org.apache.solr.client.solrj.impl.CloudSolrServer">
+		<constructor-arg name="zkHost" value="192.168.25.154:2181,192.168.25.154:2182,192.168.25.154:2183"></constructor-arg>
+		<property name="defaultCollection" value="collection2"></property>
+	</bean> -->
 </beans>

@@ -16,11 +16,11 @@ import com.kuangkee.service.IBrandService;
 public class TestBrand {
 	
 	@Autowired
-	IBrandService brandService ;
+	IBrandService brandServiceImpl ;
 	
 	@Test
 	public void testQryAllBrand() {
-		List<Brand> brands = brandService.getAllBrand() ;
+		List<Brand> brands = brandServiceImpl.getAllBrand() ;
 		for (Brand brand : brands) {
 			System.out.println(brand.getBrandId()+"->"+brand.getBrandName());
 		}

@@ -1,9 +1,11 @@
 package com.kuangkee.search.mapper.generate;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.kuangkee.search.pojo.Brand;
 import com.kuangkee.search.pojo.BrandExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface BrandMapper {
     /**

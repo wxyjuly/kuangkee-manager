@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.kuangkee.search.pojo.Brand;
 import com.kuangkee.service.IBrandService;
 
+
+
 /**
  * 测试用户搜索日志
  * @author Administrator
@@ -35,7 +37,7 @@ public class TestArticle {
 
 	/**
 	 * 
-	 * testQryById:Spring Junit鏍囧噯鍐欐硶. <br/>
+	 * testQryById:Spring Junit. <br/>
 	 *
 	 * @author Leon Xi
 	 */

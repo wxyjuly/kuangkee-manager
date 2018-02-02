@@ -20,6 +20,7 @@ import com.kuangkee.search.pojo.Article;
 import com.kuangkee.search.pojo.ArticleExample;
 import com.kuangkee.service.IArticleService;
 
+
 /**
  * 文章管理Service
  * ClassName: ArticleServiceImpl <br/>

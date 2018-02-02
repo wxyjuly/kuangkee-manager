@@ -1,9 +1,11 @@
 package com.kuangkee.search.mapper.generate;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.kuangkee.search.pojo.UserSearchLog;
 import com.kuangkee.search.pojo.UserSearchLogExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserSearchLogMapper {
     /**

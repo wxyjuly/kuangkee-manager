@@ -20,6 +20,7 @@ import com.kuangkee.search.pojo.UserSearchLog;
 import com.kuangkee.search.pojo.UserSearchLogExample;
 import com.kuangkee.service.IUserSearchLogService;
 
+
 /**
  * 用户搜索管理Service
  * ClassName: UserSearchLogServiceImpl <br/>

@@ -9,7 +9,6 @@ public interface IArticleSolrSearchDao {
 	/**
 	 * 
 	 * search: 文章搜索Dao,从Solr中搜索数据. <br/>
-	 *
 	 * @author Leon Xi
 	 * @param query
 	 * @return
