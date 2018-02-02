@@ -37,7 +37,7 @@
 </div>
 <script style="text/javascript">
 	$(function(){
-		TAOTAO.initItemCat({
+		kuangkee.initItemCat({
 			fun:function(node){
 			$(".addGroupTr").hide().find(".param").remove();
 				//  判断选择的类目是否已经添加过规格
