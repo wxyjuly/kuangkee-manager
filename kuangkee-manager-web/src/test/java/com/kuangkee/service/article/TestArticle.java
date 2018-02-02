@@ -34,39 +34,4 @@ public class TestArticle {
 			System.out.println(brand.getBrandId()+"->"+brand.getBrandName());
 		}
 	}
-
-	/**
-	 * 
-	 * testQryById:Spring Junit. <br/>
-	 *
-	 * @author Leon Xi
-	 */
-//	@Test
-//	public void testQryById() {
-//		long itemId= 536563L;
-//		TbItem item = itemService.getItemById(itemId) ;
-////		TbItem getItemById(long itemId)
-//		System.out.println(item.toString());
-//	}
-//	
-//	@Test
-//	public void testPageHelper() {
-//		//鍒涘缓涓�涓猻pring瀹瑰櫒
-//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
-//		//浠巗pring瀹瑰櫒涓幏寰桵apper鐨勪唬鐞嗗璞�
-//		TbItemMapper mapper = applicationContext.getBean(TbItemMapper.class);
-//		//鎵ц鏌ヨ锛屽苟鍒嗛〉
-//		TbItemExample example = new TbItemExample();
-//		//鍒嗛〉澶勭悊
-//		PageHelper.startPage(2, 10);
-//		List<TbItem> list = mapper.selectByExample(example);
-//		//鍙栧晢鍝佸垪琛�
-//		for (TbItem tbItem : list) {
-//			System.out.println(tbItem.getTitle());
-//		}
-//		//鍙栧垎椤典俊鎭�
-//		PageInfo<TbItem> pageInfo = new PageInfo<>(list);
-//		long total = pageInfo.getTotal();
-//		System.out.println("鍏辨湁鍟嗗搧锛�"+ total);
-//	}
 }
