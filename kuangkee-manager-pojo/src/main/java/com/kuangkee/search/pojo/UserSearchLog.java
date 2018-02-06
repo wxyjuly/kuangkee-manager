@@ -482,4 +482,14 @@ public class UserSearchLog {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	@Override
+	public String toString() {
+		return "UserSearchLog [logId=" + logId + ", userId=" + userId + ", brandId=" + brandId + ", brandName="
+				+ brandName + ", originalContent=" + originalContent + ", searchContent=" + searchContent
+				+ ", userName=" + userName + ", phone=" + phone + ", status=" + status + ", isMatch=" + isMatch
+				+ ", longitude=" + longitude + ", latitude=" + latitude + ", ip=" + ip + ", createTime=" + createTime
+				+ ", updateTime=" + updateTime + "]";
+	}
+    
 }

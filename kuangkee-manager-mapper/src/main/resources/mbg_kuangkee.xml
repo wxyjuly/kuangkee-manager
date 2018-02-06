@@ -12,9 +12,9 @@
   <context id="DB2Tables" targetRuntime="MyBatis3">
   	<!-- jdbcConnection：指定如何连接到目标数据库 -->
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        connectionURL="jdbc:mysql://localhost:3306/kuangkee_test?allowMultiQueries=true"
+        connectionURL="jdbc:mysql://47.95.146.83:3306/db_kuanghee_web?allowMultiQueries=true"
         userId="root"
-        password="">
+        password="my#pass">
     </jdbcConnection>
 
 	<!--  -->
@@ -33,22 +33,22 @@
     </javaModelGenerator>
 
 	<!-- sqlMapGenerator：sql映射生成策略： -->
-    <sqlMapGenerator targetPackage="com.kuangkee.search.mapper"  
+    <sqlMapGenerator targetPackage="com.kuangkee.search.mapper.generate"  
     	targetProject=".\src\main\java">
     <!-- 	targetProject=".\conf"> -->
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
 
 	<!-- javaClientGenerator:指定mapper接口所在的位置 -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.kuangkee.search.mapper"  
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.kuangkee.search.mapper.generate"  
     	targetProject=".\src\main\java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
 	<!-- 指定要逆向分析哪些表：根据表要创建javaBean -->
-    <table tableName="tb_article" domainObjectName="Article"></table>
-    <table tableName="tb_article_desc" domainObjectName="ArticleDesc"></table>
+    <table tableName="t_account" domainObjectName="Account"></table>
+<!--     <table tableName="tb_article_desc" domainObjectName="ArticleDesc"></table>
     <table tableName="tb_brand" domainObjectName="Brand"></table>
-    <table tableName="tb_user_search_log" domainObjectName="UserSearchLog"></table>
+    <table tableName="tb_user_search_log" domainObjectName="UserSearchLog"></table> -->
   </context>
 </generatorConfiguration>

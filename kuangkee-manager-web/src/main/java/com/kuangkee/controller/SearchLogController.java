@@ -18,7 +18,6 @@ import com.kuangkee.service.IUserSearchLogService;
  * @author Leon Xi
  * @version v1.0
  */
-@RequestMapping("/search")
 @Controller
 public class SearchLogController {
 

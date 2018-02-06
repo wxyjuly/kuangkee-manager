@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kuangkee.common.utils.SearchResult;
+import com.kuangkee.common.utils.check.MatchUtil;
 import com.kuangkee.dao.solr.IArticleSolrSearchDao;
 import com.kuangkee.search.pojo.Article;
 
@@ -49,7 +50,17 @@ public class ArticleSolrSearchDaoImpl implements IArticleSolrSearchDao {
 		for (SolrDocument solrDocument : solrDocumentList) {
 			//创建一文章对象
 			article = new Article() ;
-			article.setArticleId((Integer)solrDocument.get("id")) ;
+			
+			String articleId = (String) solrDocument.get("id"); 
+			if(MatchUtil.isEmpty(articleId)) {
+				articleId = "0" ;
+			}
+			try {
+				article.setArticleId(Integer.parseInt(articleId)) ;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			//取高亮显示的结果
 			List<String> list = highlighting.get(solrDocument.get("id")).get("article_title");
 			String title = "";

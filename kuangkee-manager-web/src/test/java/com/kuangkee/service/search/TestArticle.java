@@ -24,7 +24,7 @@ import com.kuangkee.service.impl.UserSearchLogServiceImpl;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:spring/applicationContext-*.xml" })
-public class TestUserSearchLog {
+public class TestArticle {
 	
 	@Autowired
 	IBrandService brandService ;

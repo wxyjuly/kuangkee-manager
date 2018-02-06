@@ -125,7 +125,7 @@ public class UserSearchLogServiceImpl implements IUserSearchLogService {
 
 	@Override
 	public KuangkeeResult insertUserSearchLog(UserSearchLog record) {
-		int cnt = userSearchLogMapper.insert(record) ;
+		int cnt = userSearchLogMapper.insertSelective(record) ;
 		
 		if(cnt>0) {
 			return KuangkeeResult.ok();

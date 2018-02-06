@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kuangkee.common.pojo.KuangkeeResult;
+import com.kuangkee.common.utils.check.MatchUtil;
+import com.kuangkee.common.utils.constant.Constants.KuangKeeResultConst;
 import com.kuangkee.common.utils.exception.ExceptionUtil;
 import com.kuangkee.search.mapper.generate.ArticleMapper;
 import com.kuangkee.search.pojo.Article;
@@ -33,6 +35,10 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 			
 			//查询所有文章列表
 			List<Article> list = articleMapper.selectByExample(null);
+			if(MatchUtil.isEmpty(list)) {
+				return KuangkeeResult.build(KuangKeeResultConst.ERROR_CODE, 
+						KuangKeeResultConst.DB_QUERY_EMPTY_MSG);
+			}
 			//把文章信息写入索引库
 			for (Article article : list) {
 				//创建一个SolrInputDocument对象

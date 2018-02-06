@@ -32,10 +32,10 @@ public class ArticleSearchServiceImpl implements IArticleSearchService {
 		query.setStart((page - 1) * rows);
 		query.setRows(rows);
 		//设置默认搜素域
-		query.set("df", "item_keywords");
+		query.set("df", "article_keywords");
 		//设置高亮显示
 		query.setHighlight(true);
-		query.addHighlightField("item_title");
+		query.addHighlightField("article_title");
 		query.setHighlightSimplePre("<em style=\"color:red\">");
 		query.setHighlightSimplePost("</em>");
 		//执行查询
