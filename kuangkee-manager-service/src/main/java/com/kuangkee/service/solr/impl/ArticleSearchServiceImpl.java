@@ -1,12 +1,17 @@
 package com.kuangkee.service.solr.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.solr.client.solrj.SolrQuery;
+import org.aspectj.weaver.reflect.ReflectionBasedResolvedMemberImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kuangkee.common.utils.SearchResult;
 import com.kuangkee.dao.solr.IArticleSolrSearchDao;
 import com.kuangkee.search.pojo.Article;
+import com.kuangkee.service.IArticleService;
 import com.kuangkee.service.solr.IArticleSearchService;
 
 /**
@@ -21,6 +26,9 @@ public class ArticleSearchServiceImpl implements IArticleSearchService {
 
 	@Autowired
 	private IArticleSolrSearchDao articleSolrSearchDao;
+	
+	@Autowired
+	private IArticleService articleService ;
 	
 	@Override
 	public SearchResult<Article> search(String qryStr, int page, int rows) throws Exception {
@@ -50,6 +58,11 @@ public class ArticleSearchServiceImpl implements IArticleSearchService {
 		searchResult.setCurPage(page);
 		
 		return searchResult;
+	}
+
+	@Override
+	public Article qryArticleDetail(Article article) throws Exception {
+		return articleService.getArticleById(article.getArticleId()) ;
 	}
 
 }
