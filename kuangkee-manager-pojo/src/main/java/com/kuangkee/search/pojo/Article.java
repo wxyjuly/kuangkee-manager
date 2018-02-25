@@ -546,4 +546,15 @@ public class Article {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Article [articleId=" + articleId + ", brandId=" + brandId + ", brandName=" + brandName + ", errorCode="
+				+ errorCode + ", title=" + title + ", subTitle=" + subTitle + ", imgSearchSmall=" + imgSearchSmall
+				+ ", imgContentBig=" + imgContentBig + ", imgContentSmall=" + imgContentSmall + ", sourceUrl="
+				+ sourceUrl + ", isSearchable=" + isSearchable + ", creater=" + creater + ", createrDesc=" + createrDesc
+				+ ", readTimes=" + readTimes + ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ ", content=" + content + "]";
+	}
+    
 }

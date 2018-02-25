@@ -5,18 +5,39 @@ import java.util.List;
 import com.kuangkee.common.pojo.EUDataGridResult;
 import com.kuangkee.common.pojo.KuangkeeResult;
 import com.kuangkee.common.pojo.req.ArticleReq;
+import com.kuangkee.common.utils.SearchResult;
 import com.kuangkee.search.pojo.Article;
 
 public interface IArticleService {
 
 	/**
-	 * getArticleListByPage:分页查询品牌. <br/>
+	 * getArticleListByPage:分页查询文章,后台使用. <br/>
 	 * @author Leon Xi
 	 * @param page
 	 * @param rows
 	 * @return
 	 */
-	EUDataGridResult getArticleListByPage(int page, int rows, ArticleReq record);
+	EUDataGridResult queryArticleListByPageBack(int page, int rows, ArticleReq record) ;
+	
+	/**
+	 * getArticleListByPage:分页查询文章,前台使用. <br/>
+	 * @author Leon Xi
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	SearchResult<Article> queryArticleListByPageFront(int page, int rows, ArticleReq record) ;
+	
+	/**
+	 * 
+	 * getArticleListByPageCommon:通用方法. <br/>
+	 * @author Leon Xi
+	 * @param page
+	 * @param rows
+	 * @param record
+	 * @return
+	 */
+	List<Article> getArticleListByPageCommon(int page, int rows, ArticleReq record) ;
 	
 	/**
 	 * getAllArticle: 按条件查询全部用户搜索数据;用于导出. <br/>

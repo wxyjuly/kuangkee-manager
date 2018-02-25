@@ -1,13 +1,12 @@
 package com.kuangkee.service.solr.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrQuery;
-import org.aspectj.weaver.reflect.ReflectionBasedResolvedMemberImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kuangkee.common.pojo.req.ArticleReq;
 import com.kuangkee.common.utils.SearchResult;
 import com.kuangkee.dao.solr.IArticleSolrSearchDao;
 import com.kuangkee.search.pojo.Article;
@@ -31,7 +30,7 @@ public class ArticleSearchServiceImpl implements IArticleSearchService {
 	private IArticleService articleService ;
 	
 	@Override
-	public SearchResult<Article> search(String qryStr, int page, int rows) throws Exception {
+	public SearchResult<Article> searchArticleListFromSolrByPage(String qryStr, int page, int rows) throws Exception {
 		//创建查询对象
 		SolrQuery query = new SolrQuery();
 		//设置查询条件
@@ -50,12 +49,14 @@ public class ArticleSearchServiceImpl implements IArticleSearchService {
 		SearchResult<Article> searchResult = articleSolrSearchDao.search(query);
 		//计算查询结果总页数
 		long recordCount = searchResult.getRecordCount();
+		
 		long pageCount = recordCount / rows;
 		if (recordCount % rows > 0) {
 			pageCount++;
 		}
 		searchResult.setPageCount(pageCount);
 		searchResult.setCurPage(page);
+		searchResult.setRecordCount(recordCount);
 		
 		return searchResult;
 	}
@@ -63,6 +64,16 @@ public class ArticleSearchServiceImpl implements IArticleSearchService {
 	@Override
 	public Article qryArticleDetail(Article article) throws Exception {
 		return articleService.getArticleById(article.getArticleId()) ;
+	}
+
+	@Override
+	public SearchResult<Article> searchArticleListFromDBByPage(String errorCode, int page, int rows)
+			throws Exception {
+
+		ArticleReq record = new ArticleReq() ;
+		record.setErrorCode(errorCode) ;
+		
+		return articleService.queryArticleListByPageFront(page, rows, record) ;
 	}
 
 }
