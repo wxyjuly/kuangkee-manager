@@ -1,7 +1,5 @@
 package com.kuangkee.service.solr.impl;
 
-import java.util.List;
-
 import org.apache.solr.client.solrj.SolrQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

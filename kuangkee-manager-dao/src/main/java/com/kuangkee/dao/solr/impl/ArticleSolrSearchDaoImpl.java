@@ -71,6 +71,7 @@ public class ArticleSolrSearchDaoImpl implements IArticleSolrSearchDao {
 			}
 			article.setTitle(title);
 			article.setErrorCode((String)solrDocument.get("article_error_code"));
+			article.setSubTitle((String)solrDocument.get("article_sub_title"));
 			article.setImgSearchSmall((String)solrDocument.get("article_img_search_small"));
 			article.setImgContentSmall((String)solrDocument.get("article_img_content_small"));
 			article.setImgContentBig((String)solrDocument.get("article_img_content_big"));

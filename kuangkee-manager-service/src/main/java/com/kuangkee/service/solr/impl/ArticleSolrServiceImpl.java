@@ -13,7 +13,6 @@ import com.kuangkee.common.utils.constant.Constants.KuangKeeResultConst;
 import com.kuangkee.common.utils.exception.ExceptionUtil;
 import com.kuangkee.search.mapper.generate.ArticleMapper;
 import com.kuangkee.search.pojo.Article;
-import com.kuangkee.service.IArticleService;
 import com.kuangkee.service.solr.IArticleSolrService;
 
 
@@ -23,8 +22,8 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 	@Autowired
 	private ArticleMapper articleMapper;
 	
-	@Autowired
-	private IArticleService articleService ;
+/*	@Autowired
+	private IArticleService articleService ;*/
 	
 	@Autowired
 	private SolrServer solrServer;
@@ -46,6 +45,7 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 				document.setField("id", article.getArticleId());
 				document.setField("article_title", article.getTitle());
 				document.setField("article_error_code", article.getErrorCode());
+				document.setField("article_sub_title", article.getSubTitle());
 				document.setField("article_img_search_small", article.getImgSearchSmall());
 				document.setField("article_img_content_small", article.getImgContentSmall());
 				document.setField("article_img_content_big", article.getImgContentBig());
