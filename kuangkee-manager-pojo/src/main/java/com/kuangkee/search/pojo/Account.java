@@ -544,4 +544,14 @@ public class Account {
     public void setHeadimgurl(String headimgurl) {
         this.headimgurl = headimgurl == null ? null : headimgurl.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", version=" + version + ", phone=" + phone + ", tagidList=" + tagidList
+				+ ", province=" + province + ", sex=" + sex + ", subscribe=" + subscribe + ", nickname=" + nickname
+				+ ", groupid=" + groupid + ", language=" + language + ", subscribeTime=" + subscribeTime + ", openid="
+				+ openid + ", city=" + city + ", remark=" + remark + ", unionid=" + unionid + ", country=" + country
+				+ ", headimgurl=" + headimgurl + "]";
+	}
+    
 }
