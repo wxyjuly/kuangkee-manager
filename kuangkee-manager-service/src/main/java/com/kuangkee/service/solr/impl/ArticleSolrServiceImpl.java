@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +20,11 @@ import com.kuangkee.service.solr.IArticleSolrService;
 
 @Service
 public class ArticleSolrServiceImpl implements IArticleSolrService {
+	
+	private static final Logger log = LoggerFactory.getLogger(ArticleSolrServiceImpl.class) ;
 
 	@Autowired
 	private ArticleMapper articleMapper;
-	
-/*	@Autowired
-	private IArticleService articleService ;*/
 	
 	@Autowired
 	private SolrServer solrServer;
@@ -38,6 +39,7 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 				return KuangkeeResult.build(KuangKeeResultConst.ERROR_CODE, 
 						KuangKeeResultConst.DB_QUERY_EMPTY_MSG);
 			}
+			log.info("List<Article> size-->{}", list.size());
 			//把文章信息写入索引库
 			for (Article article : list) {
 				//创建一个SolrInputDocument对象
@@ -56,7 +58,8 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 			}
 			//提交修改
 			solrServer.commit();
-		} catch (Exception e) {
+			log.info("List<Article> size:-->{}-->Committed...", list.size()) ;
+		} catch (Exception e) { 
 			e.printStackTrace();
 			return KuangkeeResult.build(500, ExceptionUtil.getStackTrace(e));
 		}
