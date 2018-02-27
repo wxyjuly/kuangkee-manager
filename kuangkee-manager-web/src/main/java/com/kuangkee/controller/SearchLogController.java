@@ -26,7 +26,7 @@ public class SearchLogController {
 	
 	/**
 	 * Visit URL: 
-	 * http://127.0.0.1:8080/kuangkee-manager/search/getUserSearchLogListByPage
+	 * http://127.0.0.1:8080/kuangkee-manager/getUserSearchLogListByPage
 	 * getUserSearchLogListByPage:查询用户所有数据. <br/>
 	 * @author Leon Xi
 	 * @param record

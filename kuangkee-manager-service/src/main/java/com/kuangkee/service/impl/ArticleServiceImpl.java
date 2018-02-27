@@ -1,5 +1,6 @@
 package com.kuangkee.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import com.kuangkee.common.pojo.EUDataGridResult;
 import com.kuangkee.common.pojo.KuangkeeResult;
 import com.kuangkee.common.pojo.req.ArticleReq;
 import com.kuangkee.common.utils.DateTimeUtil;
+import com.kuangkee.common.utils.IDUtils;
 import com.kuangkee.common.utils.SearchResult;
 import com.kuangkee.common.utils.check.MatchUtil;
 import com.kuangkee.common.utils.constant.Constants;
@@ -45,33 +47,33 @@ public class ArticleServiceImpl implements IArticleService {
 		List<Article> list = articleMapper.selectByExample(example);
 		return list;
 	}
-	
+
 	@Override
 	public EUDataGridResult queryArticleListByPageBack(int page, int rows, ArticleReq record) {
-		List<Article> list = getArticleListByPageCommon(page, rows, record) ;
+		List<Article> list = getArticleListByPageCommon(page, rows, record);
 		// 创建一个返回值对象
 		EUDataGridResult result = new EUDataGridResult();
 		result.setRows(list);
 		// 取记录总条数
 		PageInfo<Article> pageInfo = new PageInfo<>(list);
 		result.setTotal(pageInfo.getTotal());
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public SearchResult<Article> queryArticleListByPageFront(int page, int rows, ArticleReq record) {
 		SearchResult<Article> result = new SearchResult<>();
-		List<Article> list = getArticleListByPageCommon(page, rows, record) ;
+		List<Article> list = getArticleListByPageCommon(page, rows, record);
 		// 创建一个返回值对象
 		// 取记录总条数
 		PageInfo<Article> pageInfo = new PageInfo<>(list);
 		result.setCurPage(page);
 		result.setRecordCount(pageInfo.getTotal());
 		result.setPageCount(pageInfo.getPageNum());
-		
+
 		result.setResult(list);
-		
+
 		return result;
 	}
 
@@ -115,8 +117,8 @@ public class ArticleServiceImpl implements IArticleService {
 			criteria.andBrandNameLike(brandName);
 		}
 		if (!MatchUtil.isEmpty(errorCode)) {
-			errorCode = errorCode.trim() ;
-			criteria.andErrorCodeLike("%"+errorCode+"%");
+			errorCode = errorCode.trim();
+			criteria.andErrorCodeLike("%" + errorCode + "%");
 		}
 		if (!MatchUtil.isEmpty(title)) {
 			criteria.andTitleLike(title);
@@ -182,6 +184,15 @@ public class ArticleServiceImpl implements IArticleService {
 
 	@Override
 	public KuangkeeResult insertArticle(Article record) {
+
+		// 生成文章ID
+		Long articleId = IDUtils.genItemId();
+		record.setArticleId(articleId);
+		// '商品状态，1-正常，2-下架，3-删除',
+		record.setIsSearchable("1");
+		record.setCreateTime(new Date());
+		record.setUpdateTime(new Date());
+
 		int cnt = articleMapper.insert(record);
 
 		if (cnt > 0) {

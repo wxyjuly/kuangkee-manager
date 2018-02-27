@@ -4,13 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>kuangkee后台管理系统</title>
-<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/icon.css" />
-<link rel="stylesheet" type="text/css" href="css/kuangkee.css" />
-<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="<%=this.getServletContext().getContextPath() %>/js/jquery-easyui-1.4.1/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="<%=this.getServletContext().getContextPath() %>/js/jquery-easyui-1.4.1/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="<%=this.getServletContext().getContextPath() %>/css/kuangkee.css" />
+<script type="text/javascript" src="<%=this.getServletContext().getContextPath() %>/js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="<%=this.getServletContext().getContextPath() %>/js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="<%=this.getServletContext().getContextPath() %>/js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="<%=this.getServletContext().getContextPath() %>/js/common.js"></script>
 <style type="text/css">
 	.content {
 		padding: 10px 10px 10px 10px;
@@ -23,14 +23,14 @@
     		<li>
          		<span>文章管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'kuangkee-article-add'}">文章添加</li>
-	         		<li data-options="attributes:{'url':'kuangkee-article-list'}">文章维护</li>
+	         		<li data-options="attributes:{'url':'article-add'}">文章添加</li>
+	         		<li data-options="attributes:{'url':'article-list'}">文章维护</li>
 	         	</ul>
          	</li>
          	<li>
          		<span>品牌管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'kuangkee-brand-list'}">品牌维护</li>
+	         		<li data-options="attributes:{'url':'brand-list'}">品牌维护</li>
 	         	</ul>
          	</li>
          	<li>
