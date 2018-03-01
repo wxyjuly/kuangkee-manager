@@ -56,7 +56,7 @@ public class ArticleSolrSearchDaoImpl implements IArticleSolrSearchDao {
 				articleId = "0" ;
 			}
 			try {
-				article.setArticleId(Integer.parseInt(articleId)) ;
+				article.setArticleId(Long.parseLong(articleId)) ;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

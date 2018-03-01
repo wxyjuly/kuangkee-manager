@@ -37,10 +37,6 @@ public class TestUserSearchLog {
 	 */
 	@Test
 	public void testQryAllSearchLogByParams() {
-		List<Brand> brands = brandService.getAllBrand() ;
-		for (Brand brand : brands) {
-			System.out.println(brand.getBrandId()+"->"+brand.getBrandName());
-		}
 	}
 
 	/**
@@ -48,15 +44,6 @@ public class TestUserSearchLog {
 	 */
 	@Test
 	public void testQrySearchLogByPage() {
-		Integer pageNum = 1 ;
-		Integer pageSize = 10  ;
-		PageHelper.startPage(pageNum, pageSize);
-		
-		
-		List<Brand> brands = brandService.getAllBrand() ;
-		for (Brand brand : brands) {
-			System.out.println(brand.getBrandId()+"->"+brand.getBrandName());
-		}
 	}
 	
 	/**
@@ -81,8 +68,6 @@ public class TestUserSearchLog {
 		userSearchLog.setIp("127.0.99.121");
 		
 		userSearchLogService.insertUserSearchLog(userSearchLog) ;
-		
-		
 	}
 
 }

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.kuangkee.common.pojo.EUDataGridResult;
+import com.kuangkee.common.utils.check.MatchUtil;
 import com.kuangkee.search.pojo.Brand;
 import com.kuangkee.service.IBrandService;
 
@@ -16,48 +18,34 @@ import com.kuangkee.service.IBrandService;
 public class TestBrand {
 	
 	@Autowired
-	IBrandService brandServiceImpl ;
+	IBrandService brandService ;
 	
 	@Test
 	public void testQryAllBrand() {
-		List<Brand> brands = brandServiceImpl.getAllBrand() ;
+		List<Brand> brands = brandService.getAllBrand() ;
 		for (Brand brand : brands) {
-			System.out.println(brand.getBrandId()+"->"+brand.getBrandName());
+			System.err.println(brand.getId()
+					+"->"+brand.getName()
+					+"->"+brand.getOrders());
+			
 		}
 	}
-
-	/**
-	 * 
-	 * testQryById:Spring Junit标准写法. <br/>
-	 *
-	 * @author Leon Xi
-	 */
-//	@Test
-//	public void testQryById() {
-//		long itemId= 536563L;
-//		TbItem item = itemService.getItemById(itemId) ;
-////		TbItem getItemById(long itemId)
-//		System.out.println(item.toString());
-//	}
-//	
-//	@Test
-//	public void testPageHelper() {
-//		//创建一个spring容器
-//		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/applicationContext-*.xml");
-//		//从spring容器中获得Mapper的代理对象
-//		TbItemMapper mapper = applicationContext.getBean(TbItemMapper.class);
-//		//执行查询，并分页
-//		TbItemExample example = new TbItemExample();
-//		//分页处理
-//		PageHelper.startPage(2, 10);
-//		List<TbItem> list = mapper.selectByExample(example);
-//		//取商品列表
-//		for (TbItem tbItem : list) {
-//			System.out.println(tbItem.getTitle());
-//		}
-//		//取分页信息
-//		PageInfo<TbItem> pageInfo = new PageInfo<>(list);
-//		long total = pageInfo.getTotal();
-//		System.out.println("共有商品："+ total);
-//	}
+	
+	@Test
+	public void testGetBrandListByPage() {
+		int page = 1 ;
+		int rows = 10;
+		EUDataGridResult result = brandService.getBrandListByPage(page, rows) ;
+		if(MatchUtil.isEmpty(result)) {
+			return ;
+		}
+		@SuppressWarnings("unchecked")
+		List<Brand> brands = (List<Brand>) result.getRows() ;
+		for (Brand brand : brands) {
+			System.out.println(brand.getId()
+					+"->"+brand.getName()
+					+"->"+brand.getOrders());
+		}
+	}
+	
 }

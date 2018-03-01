@@ -58,7 +58,7 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 			}
 			//提交修改
 			solrServer.commit();
-			log.info("List<Article> size:-->{}-->Committed...", list.size()) ;
+			log.info("List<Article> size:-->{}-->Committed...", cnt) ;
 		} catch (Exception e) { 
 			e.printStackTrace();
 			return KuangkeeResult.build(500, ExceptionUtil.getStackTrace(e));
@@ -68,8 +68,39 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 
 	@Override
 	public KuangkeeResult importArticles2SolrByList(List<Article> articles) {
-		
- 		return null;
+		int cnt = 0 ;
+		try {
+			//查询所有文章列表
+			if(MatchUtil.isEmpty(articles)) {
+				return KuangkeeResult.build(KuangKeeResultConst.ERROR_CODE, 
+						KuangKeeResultConst.DB_QUERY_EMPTY_MSG);
+			}
+			cnt = articles.size() ;
+			log.info("List<Article> size-->{}", cnt);
+			//把文章信息写入索引库
+			for (Article article : articles) {
+				//创建一个SolrInputDocument对象
+				SolrInputDocument document = new SolrInputDocument();
+				document.setField("id", article.getArticleId());
+				document.setField("article_title", article.getTitle());
+				document.setField("article_error_code", article.getErrorCode());
+				document.setField("article_sub_title", article.getSubTitle());
+				document.setField("article_img_search_small", article.getImgSearchSmall());
+				document.setField("article_img_content_small", article.getImgContentSmall());
+				document.setField("article_img_content_big", article.getImgContentBig());
+				document.setField("article_content", article.getContent());
+				
+				//写入索引库
+				solrServer.add(document);
+			}
+			//提交修改
+			solrServer.commit();
+			log.info("List<Article> size:-->{}-->Committed...", cnt) ;
+		} catch (Exception e) { 
+			e.printStackTrace();
+			return KuangkeeResult.build(500, ExceptionUtil.getStackTrace(e));
+		}
+		return KuangkeeResult.ok("共更新了："+cnt+"数据！");
 	}
 
 }

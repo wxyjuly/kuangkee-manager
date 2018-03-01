@@ -88,8 +88,35 @@ public class ArticleController {
 			log.info("拷贝后无数据:{}",record);
 			return KuangkeeResult.build(KuangKeeResultConst.PARAM_ERROR_CODE, KuangKeeResultConst.INPUT_PARAM_ERROR);
 		}
-//		KuangkeeResult result = articleService.createItem(record, content, itemParams);
 		KuangkeeResult result = articleService.insertArticle(record) ;
+		return result;
+	}
+	
+	/**
+	 * createArtilce:更新文章. <br/>
+	 * @author Leon Xi
+	 * @param item
+	 * @param desc
+	 * @param itemParams
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/article/update", method=RequestMethod.POST)
+	@ResponseBody
+	private KuangkeeResult updateArtilce(ArticleReq req, String content) throws Exception {
+		Article record = new Article() ;
+		if(MatchUtil.isEmpty(req)||
+				MatchUtil.isEmpty(req.getArticleId())) {
+			log.info("拷贝前:{}",req);
+			return KuangkeeResult.build(KuangKeeResultConst.PARAM_ERROR_CODE, KuangKeeResultConst.INPUT_PARAM_ERROR);
+		}
+		BeanUtils.copyProperties(req, record) ;
+		
+		if (MatchUtil.isEmpty(record)) {
+			log.info("拷贝后无数据:{}",record);
+			return KuangkeeResult.build(KuangKeeResultConst.PARAM_ERROR_CODE, KuangKeeResultConst.INPUT_PARAM_ERROR);
+		}
+		KuangkeeResult result = articleService.updateArticle(record) ;
 		return result;
 	}
 }

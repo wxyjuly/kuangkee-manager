@@ -1,5 +1,6 @@
 package com.kuangkee.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import com.kuangkee.search.mapper.generate.ArticleMapper;
 import com.kuangkee.search.pojo.Article;
 import com.kuangkee.search.pojo.ArticleExample;
 import com.kuangkee.service.IArticleService;
+import com.kuangkee.service.solr.IArticleSolrService;
 
 /**
  * 文章管理Service ClassName: ArticleServiceImpl <br/>
@@ -36,14 +38,19 @@ public class ArticleServiceImpl implements IArticleService {
 	private static final Logger logger = LoggerFactory.getLogger("ArticleServiceImpl.class");
 
 	@Autowired
-	public ArticleMapper articleMapper;
+	private ArticleMapper articleMapper ;
+	
+	@Autowired
+	private IArticleSolrService articleSolrService ;
+	
 
 	@Override
 	public List<Article> getArticleListByPageCommon(int page, int rows, ArticleReq record) {
 		// 添加分页
 		PageHelper.startPage(page, rows);
-		// 查询文章列表
 		ArticleExample example = buildArticleExample(record);
+		// 查询文章列表
+		example.setOrderByClause("update_time desc");
 		List<Article> list = articleMapper.selectByExample(example);
 		return list;
 	}
@@ -88,71 +95,73 @@ public class ArticleServiceImpl implements IArticleService {
 		ArticleExample example = new ArticleExample();
 		ArticleExample.Criteria criteria = example.createCriteria();
 
-		Integer articleId = record.getArticleId();
-		String brandId = record.getBrandId(); // 品牌ID
-		String brandName = record.getBrandName();
-		String errorCode = record.getErrorCode();
-		String title = record.getTitle();
-
-		String subTitle = record.getSubTitle();
-		String url = record.getUrl();
-		String sourceUrl = record.getSourceUrl();
-		// String content = record.getContent() ;
-		String isSearchable = record.getIsSearchable();
-
-		String creater = record.getCreater();
-		String createrDesc = record.getCreaterDesc();
-		String readTimes = record.getReadTimes();
-
-		String startDate = record.getSearchStartDate();
-		String endDate = record.getSearchEndDate();
-
-		if (!MatchUtil.isEmpty(articleId)) {
-			criteria.andArticleIdEqualTo(articleId);
-		}
-		if (!MatchUtil.isEmpty(brandId)) {
-			criteria.andBrandIdEqualTo(brandId);
-		}
-		if (!MatchUtil.isEmpty(brandName)) {
-			criteria.andBrandNameLike(brandName);
-		}
-		if (!MatchUtil.isEmpty(errorCode)) {
-			errorCode = errorCode.trim();
-			criteria.andErrorCodeLike("%" + errorCode + "%");
-		}
-		if (!MatchUtil.isEmpty(title)) {
-			criteria.andTitleLike(title);
-		}
-
-		if (!MatchUtil.isEmpty(subTitle)) {
-			criteria.andSubTitleLike(subTitle);
-		}
-		if (!MatchUtil.isEmpty(sourceUrl)) {
-			criteria.andSourceUrlLike(sourceUrl);
-		}
-		// if(!MatchUtil.isEmpty(content)) {
-		// criteria.andContentLike(content) ;
-		// }
-		if (!MatchUtil.isEmpty(isSearchable)) {
-			criteria.andIsSearchableEqualTo(isSearchable);
-		}
-
-		if (!MatchUtil.isEmpty(creater)) {
-			criteria.andCreaterLike(creater);
-		}
-		if (!MatchUtil.isEmpty(createrDesc)) {
-			criteria.andCreaterDescLike(createrDesc);
-		}
-		if (!MatchUtil.isEmpty(readTimes)) {
-			criteria.andReadTimesGreaterThan(readTimes);
-		}
-
-		// test
-		if (!MatchUtil.isEmpty(startDate)) {
-			criteria.andCreateTimeGreaterThan(DateTimeUtil.strToDate(startDate));
-		}
-		if (!MatchUtil.isEmpty(endDate)) {
-			criteria.andCreateTimeLessThan(DateTimeUtil.strToDate(endDate));
+		if(!MatchUtil.isEmpty(record)) {
+			Long articleId = record.getArticleId();
+			String brandId = record.getBrandId(); // 品牌ID
+			String brandName = record.getBrandName();
+			String errorCode = record.getErrorCode();
+			String title = record.getTitle();
+	
+			String subTitle = record.getSubTitle();
+			String url = record.getUrl();
+			String sourceUrl = record.getSourceUrl();
+			// String content = record.getContent() ;
+			String isSearchable = record.getIsSearchable();
+	
+			String creater = record.getCreater();
+			String createrDesc = record.getCreaterDesc();
+			String readTimes = record.getReadTimes();
+	
+			String startDate = record.getSearchStartDate();
+			String endDate = record.getSearchEndDate();
+	
+			if (!MatchUtil.isEmpty(articleId)) {
+				criteria.andArticleIdEqualTo(articleId);
+			}
+			if (!MatchUtil.isEmpty(brandId)) {
+				criteria.andBrandIdEqualTo(brandId);
+			}
+			if (!MatchUtil.isEmpty(brandName)) {
+				criteria.andBrandNameLike(brandName);
+			}
+			if (!MatchUtil.isEmpty(errorCode)) {
+				errorCode = errorCode.trim();
+				criteria.andErrorCodeLike("%" + errorCode + "%");
+			}
+			if (!MatchUtil.isEmpty(title)) {
+				criteria.andTitleLike(title);
+			}
+	
+			if (!MatchUtil.isEmpty(subTitle)) {
+				criteria.andSubTitleLike(subTitle);
+			}
+			if (!MatchUtil.isEmpty(sourceUrl)) {
+				criteria.andSourceUrlLike(sourceUrl);
+			}
+			// if(!MatchUtil.isEmpty(content)) {
+			// criteria.andContentLike(content) ;
+			// }
+			if (!MatchUtil.isEmpty(isSearchable)) {
+				criteria.andIsSearchableEqualTo(isSearchable);
+			}
+	
+			if (!MatchUtil.isEmpty(creater)) {
+				criteria.andCreaterLike(creater);
+			}
+			if (!MatchUtil.isEmpty(createrDesc)) {
+				criteria.andCreaterDescLike(createrDesc);
+			}
+			if (!MatchUtil.isEmpty(readTimes)) {
+				criteria.andReadTimesGreaterThan(readTimes);
+			}
+	
+			// test
+			if (!MatchUtil.isEmpty(startDate)) {
+				criteria.andCreateTimeGreaterThan(DateTimeUtil.strToDate(startDate));
+			}
+			if (!MatchUtil.isEmpty(endDate)) {
+				criteria.andCreateTimeLessThan(DateTimeUtil.strToDate(endDate));
+			}
 		}
 		return example;
 	}
@@ -164,7 +173,7 @@ public class ArticleServiceImpl implements IArticleService {
 	}
 
 	@Override
-	public Article getArticleById(Integer articleId) {
+	public Article getArticleById(Long articleId) {
 		// 添加查询条件
 		ArticleExample example = new ArticleExample();
 		ArticleExample.Criteria criteria = example.createCriteria();
@@ -184,18 +193,17 @@ public class ArticleServiceImpl implements IArticleService {
 
 	@Override
 	public KuangkeeResult insertArticle(Article record) {
-
 		// 生成文章ID
 		Long articleId = IDUtils.genItemId();
 		record.setArticleId(articleId);
-		// '商品状态，1-正常，2-下架，3-删除',
+		// '文章状态，1-在Solr中显示，0-在solr中不显示',
 		record.setIsSearchable("1");
 		record.setCreateTime(new Date());
 		record.setUpdateTime(new Date());
 
-		int cnt = articleMapper.insert(record);
-
+		int cnt = articleMapper.insertSelective(record);
 		if (cnt > 0) {
+			importArticle2Solr(record) ; //更新article到solr.
 			return KuangkeeResult.ok();
 		} else {
 			logger.error("insertArticle(Article record)->{},{},{}", record, Constants.KuangKeeResultConst.ERROR_CODE,
@@ -203,6 +211,46 @@ public class ArticleServiceImpl implements IArticleService {
 
 			return KuangkeeResult.build(Constants.KuangKeeResultConst.ERROR_CODE,
 					Constants.KuangKeeResultConst.DB_INSERT_ERROR_MSG);
+		}
+	}
+
+	@Override
+	public KuangkeeResult updateArticle(Article record) {
+
+		// '文章状态，1-在Solr中显示，0-在solr中不显示',
+		record.setIsSearchable("1");
+		record.setCreateTime(new Date());
+		record.setUpdateTime(new Date());
+
+		int cnt = articleMapper.updateByPrimaryKeySelective(record);
+		if (cnt > 0) {
+			importArticle2Solr(record) ; //更新article到solr.
+			return KuangkeeResult.ok();
+		} else {
+			logger.error("updateArticle(Article record)->{},{},{}", record, Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.DB_UPDATE_ERROR_MSG);
+
+			return KuangkeeResult.build(Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.DB_UPDATE_ERROR_MSG);
+		}
+	}
+	
+	/**
+	 * importArticle2Solr:若isSearchable为1，更新数据. <br/>
+	 * @author Leon Xi
+	 * @param record
+	 */
+	private void importArticle2Solr(Article record) {
+		if(!MatchUtil.isEmpty(record)
+				&& "1".equals(record.getIsSearchable())) { //若可更新，进行更新
+			
+			try {
+				List<Article> articles = new ArrayList<>() ;
+				articles.add(record) ;
+				articleSolrService.importArticles2SolrByList(articles) ;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

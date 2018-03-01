@@ -32,7 +32,7 @@ public class TestArticleDesc {
 	public void testQryAllBrand() {
 		List<Brand> brands = brandService.getAllBrand() ;
 		for (Brand brand : brands) {
-			System.out.println(brand.getBrandId()+"->"+brand.getBrandName());
+			System.out.println(brand.getId()+"->"+brand.getName());
 		}
 	}
 

@@ -52,7 +52,7 @@ public interface IArticleService {
 	 * @param ArticleId
 	 * @return
 	 */
-	Article getArticleById(Integer ArticleId) ;
+	Article getArticleById(Long ArticleId) ;
 	
 	/**
 	 * insertItem: 增加一条数据. <br/>
@@ -62,6 +62,14 @@ public interface IArticleService {
 	 */
 	KuangkeeResult insertArticle(Article record) ;
 	
+	/**
+	 * updateArticle:更新文章. <br/>
+	 * @author Leon Xi
+	 * @param record
+	 * @return
+	 */
+	
+	public KuangkeeResult updateArticle(Article record) ;
 	/**
 	 * @deprecated Need not implements Now.
 	 * insertArticleList: 批量增加Article. <br/>

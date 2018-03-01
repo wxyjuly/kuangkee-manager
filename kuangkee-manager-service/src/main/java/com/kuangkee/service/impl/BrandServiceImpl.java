@@ -2,6 +2,7 @@ package com.kuangkee.service.impl ;
 
 import java.util.List;
 
+import org.mybatis.generator.codegen.ibatis2.model.ExampleGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class BrandServiceImpl implements IBrandService {
 	public EUDataGridResult getBrandListByPage(int page, int rows) {
 		//查询商品列表
 		BrandExample example = new BrandExample();
+		example = setOrdersAsc(example) ;
+		
 		//分页处理
 		PageHelper.startPage(page, rows);
 		
@@ -59,7 +62,7 @@ public class BrandServiceImpl implements IBrandService {
 			logger.error("getBrandById(Integer brandId)入参为空(->{brandId}", brandId) ;
 			return null ;
 		}
-		criteria.andBrandIdEqualTo(brandId);
+		criteria.andIdEqualTo(Long.valueOf(brandId));
 		
 		List<Brand> list = brandMapper.selectByExample(example);
 		if (list != null && list.size() > 0) {
@@ -93,7 +96,7 @@ public class BrandServiceImpl implements IBrandService {
 	@Override
 	public KuangkeeResult updateBrandStatus(Brand record) {
 		if(MatchUtil.isEmpty(record) 
-				|| MatchUtil.isEmpty(record.getBrandId())) {
+				|| MatchUtil.isEmpty(record.getId())) {
 			logger.error("updateBrandStatus(Brand record)->{},{}", Constants.KuangKeeResultConst.ERROR_CODE,
 					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR) ;
 			
@@ -112,7 +115,20 @@ public class BrandServiceImpl implements IBrandService {
 	@Override
 	public List<Brand> getAllBrand() {
 		BrandExample example = new BrandExample() ;
+		example = setOrdersAsc(example) ;
 		return brandMapper.selectByExample(example) ;
+	}
+	
+	/**
+	 * setOrdersAsc:添加按照Orders排序查询. <br/>
+	 * @author Leon Xi
+	 * @param example
+	 * @return
+	 */
+	private BrandExample setOrdersAsc(BrandExample example) {
+		String orderClause = "orders asc" ;
+		example.setOrderByClause(orderClause);
+		return example ;
 	}
 
 }

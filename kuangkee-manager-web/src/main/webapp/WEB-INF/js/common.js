@@ -62,8 +62,9 @@ var TT = KuangHee = {
     	// 初始化图片上传组件
     	this.initPicUpload(data);
     	// 初始化选择类目组件
-    	this.initItemCat(data);
+//    	this.initItemCat(data);
     },
+    
     // 初始化图片上传组件
     initPicUpload : function(data){
     	$(".picFileUpload").each(function(i,e){
@@ -108,8 +109,8 @@ var TT = KuangHee = {
     initItemCat : function(data){
     	$(".selectItemCat").each(function(i,e){
     		var _ele = $(e);
-    		if(data && data.cid){
-    			_ele.after("<span style='margin-left:10px;'>"+data.cid+"</span>");
+    		if(data && data.id){
+    			_ele.after("<span style='margin-left:10px;'>"+data.id+"</span>");
     		}else{
     			_ele.after("<span style='margin-left:10px;'></span>");
     		}
@@ -121,17 +122,17 @@ var TT = KuangHee = {
     			    modal:true,
     			    closed:true,
     			    iconCls:'icon-save',
-    			    title:'选择类目',
+    			    title:'选择品牌',
     			    onOpen : function(){
     			    	var _win = this;
     			    	$("ul",_win).tree({
-    			    		url:baseProjectPath + '/item/cat/list',
+    			    		url:baseProjectPath + '/article/qryBrands',
     			    		animate:true,
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
     			    				// 填写到cid中
-    			    				_ele.parent().find("[name=cid]").val(node.id);
-    			    				_ele.next().text(node.text).attr("cid",node.id);
+    			    				_ele.parent().find("[name=id]").val(node.id);
+    			    				_ele.next().text(node.text).attr("id",node.id);
     			    				$(_win).window('close');
     			    				if(data && data.fun){
     			    					data.fun.call(this,node);
