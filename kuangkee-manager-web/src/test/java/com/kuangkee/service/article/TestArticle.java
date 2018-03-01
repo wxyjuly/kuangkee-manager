@@ -1,5 +1,6 @@
 package com.kuangkee.service.article ;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -75,5 +76,25 @@ public class TestArticle {
 		for (Article article : list) {
 			System.err.println("->"+article);
 		}
+	}
+	
+	@Test
+	public void testUpdateArticleBatch() {
+		String ids = "151970492958748,151970495456105" ;
+		List<Long> idLists = new ArrayList<>() ;
+		if(ids.indexOf(",")!=-1) {
+			String [] tmpIds = ids.split(",") ;
+			for (String tmp : tmpIds) {
+				idLists.add(Long.parseLong(tmp)) ;
+			}
+		} else {
+			idLists.add(Long.parseLong(ids)) ;
+		}
+		
+		ArticleReq  record = new ArticleReq() ;
+		record.setIsSearchable("0");
+		record.setIdLists(idLists);
+		KuangkeeResult result = articleService.updateArticlesByIds(record);
+		System.err.println(result.getData());
 	}
 }

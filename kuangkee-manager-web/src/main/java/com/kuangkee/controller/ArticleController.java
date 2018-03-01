@@ -1,5 +1,8 @@
 package com.kuangkee.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -7,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kuangkee.common.pojo.EUDataGridResult;
 import com.kuangkee.common.pojo.KuangkeeResult;
 import com.kuangkee.common.pojo.req.ArticleReq;
 import com.kuangkee.common.utils.check.MatchUtil;
+import com.kuangkee.common.utils.constant.Constants;
 import com.kuangkee.common.utils.constant.Constants.KuangKeeResultConst;
 import com.kuangkee.search.pojo.Article;
 import com.kuangkee.service.IArticleService;
@@ -59,8 +64,103 @@ public class ArticleController {
 	 */
 	@RequestMapping("/article/list")
 	@ResponseBody
-	public EUDataGridResult getItemList(Integer page, Integer rows, ArticleReq record) {
+	public EUDataGridResult getArticleListBack(Integer page, Integer rows, ArticleReq record) {
 		EUDataGridResult result = articleService.queryArticleListByPageBack(page, rows, record);
+		return result;
+	}
+	
+	/**
+	 * articleInStock:文章可搜索. <br/>
+	 * @author Leon Xi
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	@RequestMapping("/article/instock")
+	@ResponseBody
+	public KuangkeeResult articleInStock(@RequestParam(value="ids", defaultValue="0")String ids) {
+		if(MatchUtil.isEmpty(ids)) {
+			return KuangkeeResult.build(Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR); 
+		}
+		
+		List<Long> idLists = new ArrayList<>() ;
+		if(ids.indexOf(",")!=-1) {
+			String [] tmpIds = ids.split(",") ;
+			for (String tmp : tmpIds) {
+				idLists.add(Long.parseLong(tmp)) ;
+			}
+		} else {
+			idLists.add(Long.parseLong(ids)) ;
+		}
+		
+		ArticleReq  record = new ArticleReq() ;
+		record.setIsSearchable("1");
+		record.setIdLists(idLists);
+		KuangkeeResult result = articleService.updateArticlesByIds(record);
+		return result;
+	}
+	
+	/**
+	 * articleUnStock:文章不可搜索. <br/>
+	 * @author Leon Xi
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	@RequestMapping("/article/unstock")
+	@ResponseBody
+	public KuangkeeResult articleUnStock(@RequestParam(value="ids", defaultValue="0")String ids) {
+		if(MatchUtil.isEmpty(ids)) {
+			return KuangkeeResult.build(Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR); 
+		}
+		
+		List<Long> idLists = new ArrayList<>() ;
+		if(ids.indexOf(",")!=-1) {
+			String [] tmpIds = ids.split(",") ;
+			for (String tmp : tmpIds) {
+				idLists.add(Long.parseLong(tmp)) ;
+			}
+		} else {
+			idLists.add(Long.parseLong(ids)) ;
+		}
+		
+		ArticleReq  record = new ArticleReq() ;
+		record.setIsSearchable("0");
+		record.setIdLists(idLists);
+		KuangkeeResult result = articleService.updateArticlesByIds(record);
+		return result;
+	}
+	
+	/**
+	 * articleUnStock:文章不可搜索. <br/>
+	 * @author Leon Xi
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	@RequestMapping("/article/delete")
+	@ResponseBody
+	public KuangkeeResult articleDel(@RequestParam(value="ids", defaultValue="0")String ids) {
+		if(MatchUtil.isEmpty(ids)) {
+			return KuangkeeResult.build(Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR); 
+		}
+		
+		List<Long> idLists = new ArrayList<>() ;
+		if(ids.indexOf(",")!=-1) {
+			String [] tmpIds = ids.split(",") ;
+			for (String tmp : tmpIds) {
+				idLists.add(Long.parseLong(tmp)) ;
+			}
+		} else {
+			idLists.add(Long.parseLong(ids)) ;
+		}
+		
+		ArticleReq  record = new ArticleReq() ;
+		record.setIdLists(idLists);
+		KuangkeeResult result = articleService.updateArticlesByIds(record);
 		return result;
 	}
 	

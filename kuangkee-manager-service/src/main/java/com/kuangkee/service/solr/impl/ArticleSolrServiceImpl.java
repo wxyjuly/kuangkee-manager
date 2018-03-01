@@ -33,7 +33,7 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 		int cnt = 0 ;
 		try {
 			//查询所有文章列表
-			List<Article> list = articleMapper.selectByExample(null);
+			List<Article> list = articleMapper.selectByExampleWithBLOBs(null) ;
 			if(MatchUtil.isEmpty(list)) {
 				return KuangkeeResult.build(KuangKeeResultConst.ERROR_CODE, 
 						KuangKeeResultConst.DB_QUERY_EMPTY_MSG);

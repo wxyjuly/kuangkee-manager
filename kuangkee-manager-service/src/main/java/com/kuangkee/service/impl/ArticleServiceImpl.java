@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ import com.kuangkee.common.utils.constant.Constants;
 import com.kuangkee.search.mapper.generate.ArticleMapper;
 import com.kuangkee.search.pojo.Article;
 import com.kuangkee.search.pojo.ArticleExample;
+import com.kuangkee.search.pojo.BrandExample.Criteria;
 import com.kuangkee.service.IArticleService;
 import com.kuangkee.service.solr.IArticleSolrService;
 
@@ -51,7 +53,9 @@ public class ArticleServiceImpl implements IArticleService {
 		ArticleExample example = buildArticleExample(record);
 		// 查询文章列表
 		example.setOrderByClause("update_time desc");
-		List<Article> list = articleMapper.selectByExample(example);
+//		List<Article> list = articleMapper.selectByExample(example);
+		List<Article> list = articleMapper.selectByExampleWithBLOBs(example) ;
+		
 		return list;
 	}
 
@@ -275,6 +279,48 @@ public class ArticleServiceImpl implements IArticleService {
 		} else {
 			return KuangkeeResult.build(Constants.KuangKeeResultConst.SUC_CODE, "更新失败");
 		}
+	}
+
+	@Override
+	public KuangkeeResult updateArticlesByIds(ArticleReq req) {
+		if(MatchUtil.isEmpty(req) || MatchUtil.isEmpty(req.getIsSearchable())) {
+			logger.error("updateArticlesByIds(Article record)->{},{}", Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR);
+
+			return KuangkeeResult.build(Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR);
+		}
+		Article record = new Article() ;
+		BeanUtils.copyProperties(req, record) ;
+		
+		ArticleExample example = buildArticleIdsExample(req) ;
+		int cnt = articleMapper.updateByExampleSelective(record, example) ;
+		return KuangkeeResult.ok(cnt);
+	}
+
+	@Override
+	public KuangkeeResult delArticleByIds(ArticleReq req) {
+		
+		if(MatchUtil.isEmpty(req) || MatchUtil.isEmpty(req.getIsSearchable())) {
+			logger.error("delArticleByIds(Article record)->{},{}", Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR);
+			return KuangkeeResult.build(Constants.KuangKeeResultConst.ERROR_CODE,
+					Constants.KuangKeeResultConst.INPUT_PARAM_ERROR);
+		}
+		
+		ArticleExample example = buildArticleIdsExample(req);
+		int cnt = articleMapper.deleteByExample(example) ;
+		return KuangkeeResult.ok(cnt);
+	}
+
+	private ArticleExample buildArticleIdsExample(ArticleReq req) {
+		ArticleExample example = new ArticleExample() ;
+		List<Long> idLists = req.getIdLists() ;
+		if (!MatchUtil.isEmpty(idLists)) {
+			ArticleExample.Criteria criteria = example.createCriteria() ;
+			criteria.andArticleIdIn(idLists) ;
+		}
+		return example;
 	}
 
 }

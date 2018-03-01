@@ -68,8 +68,16 @@ public interface IArticleService {
 	 * @param record
 	 * @return
 	 */
-	
 	public KuangkeeResult updateArticle(Article record) ;
+	
+	/**
+	 * updateArticlesByIds:通过Ids状态，更新数据. <br/>
+	 * @author Leon Xi
+	 * @param record
+	 * @return
+	 */
+	public KuangkeeResult updateArticlesByIds(ArticleReq record) ;
+	
 	/**
 	 * @deprecated Need not implements Now.
 	 * insertArticleList: 批量增加Article. <br/>
@@ -80,6 +88,7 @@ public interface IArticleService {
 	KuangkeeResult insertArticleList(List<Article> ArticleList) ;
 	
 	/**
+	 * @deprecated
 	 * updateArticleStatus: 更新Article状态;搜索日志不能更新. <br/>
 	 * @Deprecated 
 	 * @author Leon Xi
@@ -87,4 +96,13 @@ public interface IArticleService {
 	 * @return
 	 */
 	KuangkeeResult updateArticleStatus(Article record) ;
+	
+	/**
+	 * delArticleByIds: ids批量删除. <br/>
+	 * @Deprecated 
+	 * @author Leon Xi
+	 * @param Article
+	 * @return
+	 */
+	KuangkeeResult delArticleByIds(ArticleReq req) ;
 }
