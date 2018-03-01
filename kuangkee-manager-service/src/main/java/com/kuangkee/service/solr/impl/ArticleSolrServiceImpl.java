@@ -1,5 +1,6 @@
 package com.kuangkee.service.solr.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrServer;
@@ -10,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kuangkee.common.pojo.KuangkeeResult;
+import com.kuangkee.common.pojo.req.ArticleReq;
 import com.kuangkee.common.utils.check.MatchUtil;
 import com.kuangkee.common.utils.constant.Constants.KuangKeeResultConst;
 import com.kuangkee.common.utils.exception.ExceptionUtil;
 import com.kuangkee.search.mapper.generate.ArticleMapper;
 import com.kuangkee.search.pojo.Article;
+import com.kuangkee.service.IArticleService;
 import com.kuangkee.service.solr.IArticleSolrService;
 
 @Service
@@ -26,14 +29,18 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 	private ArticleMapper articleMapper;
 	
 	@Autowired
+	private IArticleService articleService ;
+	
+	@Autowired
 	private SolrServer solrServer;
 	
 	@Override
-	public KuangkeeResult importAllArticles2Solr() {
+	public KuangkeeResult importAllArticles2Solr(ArticleReq req) {
 		int cnt = 0 ;
 		try {
 			//查询所有文章列表
-			List<Article> list = articleMapper.selectByExampleWithBLOBs(null) ;
+//			List<Article> list = articleMapper.selectByExampleWithBLOBs(null) ;
+			List<Article> list = articleService.getAllArticle(req) ;
 			if(MatchUtil.isEmpty(list)) {
 				return KuangkeeResult.build(KuangKeeResultConst.ERROR_CODE, 
 						KuangKeeResultConst.DB_QUERY_EMPTY_MSG);
@@ -103,4 +110,44 @@ public class ArticleSolrServiceImpl implements IArticleSolrService {
 		return KuangkeeResult.ok("共更新了："+cnt+"数据！");
 	}
 
+	@Override
+	public KuangkeeResult delArticles2Solr(ArticleReq req) {
+		int cnt = 0 ;
+		try {
+			//查询所有文章列表
+			if(MatchUtil.isEmpty(req)||MatchUtil.isEmpty(req.getIdLists())) {
+				return KuangkeeResult.build(KuangKeeResultConst.ERROR_CODE, 
+						KuangKeeResultConst.DB_QUERY_EMPTY_MSG);
+			}
+			
+			List<String> ids = transLong2StringList(req.getIdLists());
+			cnt = ids.size() ;
+			log.info("ids:{} ;size:-->{}-->before commit...", ids, cnt) ;
+			//写入索引库
+			
+			solrServer.deleteById(ids) ;
+			//提交修改
+			solrServer.commit();
+			
+			log.info("ids:{} ;size:-->{}-->Committed...", ids, cnt) ;
+		} catch (Exception e) { 
+			e.printStackTrace();
+			return KuangkeeResult.build(500, ExceptionUtil.getStackTrace(e));
+		}
+		return KuangkeeResult.ok("共删了："+cnt+"数据！");
+	}
+
+	public List<String> transLong2StringList(List<Long> idLists){
+		List<String> strList = new ArrayList<>() ;
+		if (MatchUtil.isEmpty(idLists)) {
+			return null ;
+		} else {
+			for (Long tmp : idLists) {
+				if(!MatchUtil.isEmpty(tmp)) {
+					strList.add(String.valueOf(tmp)) ;
+				}
+			}
+		}
+		return strList ;
+	}
 }

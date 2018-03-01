@@ -23,7 +23,6 @@ import com.kuangkee.common.utils.constant.Constants;
 import com.kuangkee.search.mapper.generate.ArticleMapper;
 import com.kuangkee.search.pojo.Article;
 import com.kuangkee.search.pojo.ArticleExample;
-import com.kuangkee.search.pojo.BrandExample.Criteria;
 import com.kuangkee.service.IArticleService;
 import com.kuangkee.service.solr.IArticleSolrService;
 
@@ -97,10 +96,12 @@ public class ArticleServiceImpl implements IArticleService {
 	 */
 	private ArticleExample buildArticleExample(ArticleReq record) {
 		ArticleExample example = new ArticleExample();
-		ArticleExample.Criteria criteria = example.createCriteria();
-
 		if(!MatchUtil.isEmpty(record)) {
+			ArticleExample.Criteria criteria = example.createCriteria();
 			Long articleId = record.getArticleId();
+			
+			List<Long> idLists = record.getIdLists() ;
+			
 			String brandId = record.getBrandId(); // 品牌ID
 			String brandName = record.getBrandName();
 			String errorCode = record.getErrorCode();
@@ -122,6 +123,11 @@ public class ArticleServiceImpl implements IArticleService {
 			if (!MatchUtil.isEmpty(articleId)) {
 				criteria.andArticleIdEqualTo(articleId);
 			}
+			
+			if (!MatchUtil.isEmpty(idLists)) {
+				criteria.andArticleIdIn(idLists);
+			}
+			
 			if (!MatchUtil.isEmpty(brandId)) {
 				criteria.andBrandIdEqualTo(brandId);
 			}
@@ -173,7 +179,7 @@ public class ArticleServiceImpl implements IArticleService {
 	@Override
 	public List<Article> getAllArticle(ArticleReq record) {
 		ArticleExample example = buildArticleExample(record);
-		return articleMapper.selectByExample(example);
+		return articleMapper.selectByExampleWithBLOBs(example);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.kuangkee.service.solr;
 import java.util.List;
 
 import com.kuangkee.common.pojo.KuangkeeResult;
+import com.kuangkee.common.pojo.req.ArticleReq;
 import com.kuangkee.search.pojo.Article;
 /**
  * 处理数据库与solr之间的数据
@@ -15,11 +16,19 @@ public interface IArticleSolrService {
 
 	/**
 	 * 
-	 * importAllArticles:导入所有的文章数据到Solr. <br/>
+	 * importAllArticles:导入指定条件的文章数据到Solr. <br/>
 	 * @author Leon Xi
 	 * @return
 	 */
-	KuangkeeResult importAllArticles2Solr();
+	KuangkeeResult importAllArticles2Solr(ArticleReq req);
+	
+	/**
+	 * 
+	 * delArticles2Solr:删除指定Ids solr中文章数据. <br/>
+	 * @author Leon Xi
+	 * @return
+	 */
+	KuangkeeResult delArticles2Solr(ArticleReq req);
 	
 	/**
 	 * 

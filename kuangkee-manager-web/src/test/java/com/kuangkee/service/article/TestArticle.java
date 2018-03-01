@@ -36,7 +36,7 @@ public class TestArticle {
 	 */
 	@Test
 	public void testArticleImportAll2Solr() {
-		KuangkeeResult kuangkeeResult = articleSolrService.importAllArticles2Solr() ;
+		KuangkeeResult kuangkeeResult = articleSolrService.importAllArticles2Solr(null) ;
 		System.out.println(kuangkeeResult);
 	}
 	
@@ -79,7 +79,7 @@ public class TestArticle {
 	}
 	
 	@Test
-	public void testUpdateArticleBatch() {
+	public void testUpdateArticleBatchStatus() {
 		String ids = "151970492958748,151970495456105" ;
 		List<Long> idLists = new ArrayList<>() ;
 		if(ids.indexOf(",")!=-1) {
@@ -95,6 +95,10 @@ public class TestArticle {
 		record.setIsSearchable("0");
 		record.setIdLists(idLists);
 		KuangkeeResult result = articleService.updateArticlesByIds(record);
+		
+		record.setIsSearchable(null);
+		KuangkeeResult result2 = articleSolrService.importAllArticles2Solr(record) ;
+		
 		System.err.println(result.getData());
 	}
 }

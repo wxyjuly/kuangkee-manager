@@ -50,7 +50,7 @@ public class ArticleController {
 	@ResponseBody
 	public KuangkeeResult refreshArticleImportAll2Solr() {
 		log.info("solr refreshArticleImportAll2Solr 更新开始...");
-		KuangkeeResult kuangkeeResult = articleSolrService.importAllArticles2Solr() ;
+		KuangkeeResult kuangkeeResult = articleSolrService.importAllArticles2Solr(null) ;
 		log.info("solr refreshArticleImportAll2Solr 更新完成...:{}", kuangkeeResult);
 		return kuangkeeResult ;
 	}
@@ -98,6 +98,9 @@ public class ArticleController {
 		record.setIsSearchable("1");
 		record.setIdLists(idLists);
 		KuangkeeResult result = articleService.updateArticlesByIds(record);
+		
+		
+		importSolrInfos(record); //更新solr数据
 		return result;
 	}
 	
@@ -130,6 +133,8 @@ public class ArticleController {
 		record.setIsSearchable("0");
 		record.setIdLists(idLists);
 		KuangkeeResult result = articleService.updateArticlesByIds(record);
+		
+		delSolrInfos(record); //删除solr对应数据
 		return result;
 	}
 	
@@ -161,6 +166,9 @@ public class ArticleController {
 		ArticleReq  record = new ArticleReq() ;
 		record.setIdLists(idLists);
 		KuangkeeResult result = articleService.updateArticlesByIds(record);
+		
+		delSolrInfos(record); //删除solr对应数据
+		
 		return result;
 	}
 	
@@ -203,7 +211,7 @@ public class ArticleController {
 	 */
 	@RequestMapping(value="/article/update", method=RequestMethod.POST)
 	@ResponseBody
-	private KuangkeeResult updateArtilce(ArticleReq req, String content) throws Exception {
+	public KuangkeeResult updateArtilce(ArticleReq req, String content) throws Exception {
 		Article record = new Article() ;
 		if(MatchUtil.isEmpty(req)||
 				MatchUtil.isEmpty(req.getArticleId())) {
@@ -218,5 +226,41 @@ public class ArticleController {
 		}
 		KuangkeeResult result = articleService.updateArticle(record) ;
 		return result;
+	}
+	
+	/**
+	 * importSolrInfos:更新solr文章数据. <br/>
+	 * @author Leon Xi
+	 * @param record
+	 */
+	private void importSolrInfos(ArticleReq record) {
+		try {
+			log.info("更新solr数据："+record.getIdLists());
+			ArticleReq req = new ArticleReq() ; //新建，避免搜索条件影响
+			
+			List<Long> idLists = record.getIdLists() ;  
+			req.setIdLists(idLists);
+			articleSolrService.importAllArticles2Solr(req) ;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * delSolrInfos:更新solr文章数据. <br/>
+	 * @author Leon Xi
+	 * @param record
+	 */
+	private void delSolrInfos(ArticleReq record) {
+		try {
+			log.info("更新solr数据："+record.getIdLists());
+			ArticleReq req = new ArticleReq() ; //新建，避免搜索条件影响
+			
+			List<Long> idLists = record.getIdLists() ;  
+			req.setIdLists(idLists);
+			articleSolrService.delArticles2Solr(req) ;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
