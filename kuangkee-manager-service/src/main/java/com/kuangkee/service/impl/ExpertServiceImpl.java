@@ -15,7 +15,7 @@ import com.kuangkee.search.mapper.artifact.ExpertExtMapper;
 import com.kuangkee.search.mapper.generate.ExpertMapper;
 import com.kuangkee.search.pojo.Expert;
 import com.kuangkee.search.pojo.ExpertExample;
-import com.kuangkee.search.pojo.ext.ExpertBrands;
+import com.kuangkee.search.pojo.ext.ExpertBrandsExt;
 import com.kuangkee.service.IExpertService;
 
 /**
@@ -76,7 +76,7 @@ public class ExpertServiceImpl implements IExpertService {
 	}
 
 	@Override
-	public List<ExpertBrands> getExpertBrands(ExpertReq record) {
+	public List<ExpertBrandsExt> getExpertBrands(ExpertReq record) {
 		return expertExtMapper.selectExpertBrands(record) ;
 	}
 
