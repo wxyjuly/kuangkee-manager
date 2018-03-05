@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kuangkee.search.mapper.artifact.ExpertExtMapper" >
+
+<!-- write by hand for ExpertBrands -->
+   <resultMap id="ResultExpertBrands" type="com.kuangkee.search.pojo.ext.ExpertBrands">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="brandId" property="brandId" jdbcType="BIGINT" />
+    <result column="brandName" property="brandName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="ExpertBrands_Column_List" >
+    t1.id id,t3.id brandId,t3.name brandName
+  </sql>
+ 
+  <select id="selectExpertBrands" resultMap="ResultExpertBrands" parameterType="com.kuangkee.common.pojo.req.ExpertReq">
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="ExpertBrands_Column_List" />
+    FROM 
+	t_expert t1,
+	t_expert_brands t2,
+	t_brand t3
+	WHERE 1=1 
+	<if test="record.id !=null">
+		AND t1.id = record.id
+	</if>
+	AND t1.id = t2.expert_brands_id
+	AND t2.brand_id = t3.id	
+  </select>
+</mapper>

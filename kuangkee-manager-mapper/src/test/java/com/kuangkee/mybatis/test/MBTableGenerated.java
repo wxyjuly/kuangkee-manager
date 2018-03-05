@@ -39,6 +39,7 @@ public class MBTableGenerated {
 		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config,
 				callback, warnings);
 		myBatisGenerator.generate(null);
+		System.out.println("Generate success...");
 	}
 
 }
