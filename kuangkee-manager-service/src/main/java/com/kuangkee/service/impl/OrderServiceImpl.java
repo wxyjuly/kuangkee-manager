@@ -28,7 +28,7 @@ import com.kuangkee.service.IOrderService;
 @Service
 public class OrderServiceImpl implements IOrderService {
 
-	private static final Logger logger = LoggerFactory.getLogger("ExpertServiceImpl.class");
+	private static final Logger log = LoggerFactory.getLogger("OrderServiceImpl.class");
 
 	@Autowired
 	private OrderMapper orderMapper ;
@@ -70,7 +70,7 @@ public class OrderServiceImpl implements IOrderService {
 		OrderExample example = new OrderExample();
 		OrderExample.Criteria criteria = example.createCriteria();
 		if (MatchUtil.isEmpty(orderId)) { // check param
-			logger.error("getOrderById(Integer orderId)入参为空【orderId】->{}", orderId);
+			log.error("getOrderById(Integer orderId)入参为空【orderId】->{}", orderId);
 			return null;
 		}
 		criteria.andIdEqualTo(orderId) ;
@@ -87,6 +87,7 @@ public class OrderServiceImpl implements IOrderService {
 	public Order saveOrderById(Order order) {
 		Long orderId = IDUtils.genItemId();
 		order.setId(orderId) ;
+		log.info("saveOrderById(order)->{}",order);
 		int i= orderMapper.insertSelective(order) ;
 		if(i>0) {
 			return order;

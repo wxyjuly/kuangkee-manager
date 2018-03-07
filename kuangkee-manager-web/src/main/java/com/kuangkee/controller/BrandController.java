@@ -55,7 +55,4 @@ public class BrandController {
 	private List<Brand> qryAllBrands() throws Exception {
 		return brandService.getAllBrand() ;
 	}
-	
-	
-	
 }
