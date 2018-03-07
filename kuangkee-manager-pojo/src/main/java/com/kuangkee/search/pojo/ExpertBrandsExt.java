@@ -1,4 +1,4 @@
-package com.kuangkee.search.pojo.ext ;
+package com.kuangkee.search.pojo ;
 
 public class ExpertBrandsExt {
 	
@@ -30,6 +30,11 @@ public class ExpertBrandsExt {
 
 	public void setBrandName(String brandName) {
 		this.brandName = brandName;
+	}
+
+	@Override
+	public String toString() {
+		return "ExpertBrandsExt [id=" + id + ", brandId=" + brandId + ", brandName=" + brandName + "]";
 	}
 
 }

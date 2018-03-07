@@ -1,21 +1,24 @@
 package com.kuangkee.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.kuangkee.common.pojo.req.ExpertBrands;
 import com.kuangkee.common.pojo.req.ExpertReq;
+import com.kuangkee.common.pojo.resp.ExpertResp;
 import com.kuangkee.common.utils.SearchResult;
 import com.kuangkee.common.utils.check.MatchUtil;
-import com.kuangkee.search.mapper.artifact.ExpertExtMapper;
+import com.kuangkee.search.mapper.generate.ExpertExtMapper;
 import com.kuangkee.search.mapper.generate.ExpertMapper;
 import com.kuangkee.search.pojo.Expert;
 import com.kuangkee.search.pojo.ExpertExample;
-import com.kuangkee.search.pojo.ext.ExpertBrandsExt;
 import com.kuangkee.service.IExpertService;
 
 /**
@@ -76,8 +79,36 @@ public class ExpertServiceImpl implements IExpertService {
 	}
 
 	@Override
-	public List<ExpertBrandsExt> getExpertBrands(ExpertReq record) {
+	public List<ExpertBrands> getExpertBrands(ExpertReq record) {
 		return expertExtMapper.selectExpertBrands(record) ;
+	}
+
+	@Override
+	public List<ExpertResp> getExpertReq(int page, int rows) {
+		List<ExpertResp> result = new ArrayList<>() ;
+		ExpertResp expertResp ;
+		ExpertReq record = new ExpertReq() ;
+		List<Expert> experts = getExpertListByPageCommon(page, rows, record) ;
+		
+		for (Expert expert : experts) {
+			expertResp = new ExpertResp() ;
+			if (!MatchUtil.isEmpty(expert)) {
+				BeanUtils.copyProperties(expert, expertResp) ;
+				
+				String name = expertResp.getName() ;  //截取
+				if(!MatchUtil.isEmpty(name)) {
+					expertResp.setName(name.substring(0, 1)+"工程师");
+				}
+				expert.setPhone(""); //清除手机号码
+				expert.setWechat(""); //清除微信号码
+				
+				record.setId(expert.getId());
+				List<ExpertBrands> expertBrandsExts = getExpertBrands(record) ;
+				expertResp.setExpertBrands(expertBrandsExts);
+				result.add(expertResp) ;
+			}
+		}
+		return result;
 	}
 
 }

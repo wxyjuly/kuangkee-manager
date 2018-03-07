@@ -2,10 +2,11 @@ package com.kuangkee.service;
 
 import java.util.List;
 
+import com.kuangkee.common.pojo.req.ExpertBrands;
 import com.kuangkee.common.pojo.req.ExpertReq;
+import com.kuangkee.common.pojo.resp.ExpertResp;
 import com.kuangkee.common.utils.SearchResult;
 import com.kuangkee.search.pojo.Expert;
-import com.kuangkee.search.pojo.ext.ExpertBrandsExt;
 
 public interface IExpertService {
 	
@@ -42,6 +43,14 @@ public interface IExpertService {
 	 * @param record
 	 * @return
 	 */
-	List<ExpertBrandsExt> getExpertBrands(ExpertReq record) ;
+	List<ExpertBrands> getExpertBrands(ExpertReq record) ;
+	
+	/**
+	 * 
+	 * getExpertReq:获取专家列表和品牌数据. <br/>
+	 * @author Leon Xi
+	 * @return
+	 */
+	List<ExpertResp> getExpertReq(int page, int rows) ;
 	
 }
