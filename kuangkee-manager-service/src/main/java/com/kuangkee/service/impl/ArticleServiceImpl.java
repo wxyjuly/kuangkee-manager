@@ -193,7 +193,7 @@ public class ArticleServiceImpl implements IArticleService {
 		}
 		criteria.andArticleIdEqualTo(articleId);
 
-		List<Article> list = articleMapper.selectByExample(example);
+		List<Article> list = articleMapper.selectByExampleWithBLOBs(example) ;
 		if (list != null && list.size() > 0) {
 			Article item = list.get(0);
 			return item;

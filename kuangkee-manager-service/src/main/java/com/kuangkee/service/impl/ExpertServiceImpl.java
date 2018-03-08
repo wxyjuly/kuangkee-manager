@@ -97,7 +97,7 @@ public class ExpertServiceImpl implements IExpertService {
 				
 				String name = expertResp.getName() ;  //截取
 				if(!MatchUtil.isEmpty(name)) {
-					expertResp.setName(name.substring(0, 1)+"工程师");
+					expertResp.setName(name.substring(0, 1)+"工");
 				}
 				expert.setPhone(""); //清除手机号码
 				expert.setWechat(""); //清除微信号码
