@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>kuangkee后台管理系统</title>
+<title>kuanghee后台管理系统</title>
 <link rel="stylesheet" type="text/css" href="<%=this.getServletContext().getContextPath() %>/js/jquery-easyui-1.4.1/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="<%=this.getServletContext().getContextPath() %>/js/jquery-easyui-1.4.1/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="<%=this.getServletContext().getContextPath() %>/css/kuangkee.css" />
@@ -23,8 +23,8 @@
     		<li>
          		<span>文章管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'article-add'}">文章添加</li>
 	         		<li data-options="attributes:{'url':'article-list'}">文章维护</li>
+	         		<li data-options="attributes:{'url':'article-add'}">文章添加</li>
 	         	</ul>
          	</li>
          	<li>
@@ -36,20 +36,11 @@
          	<li>
          		<ul>------------</ul>
          	</li>
-         	
          	<li>
-         		<span>商品管理</span>
+         		<span>专家维护</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'item-add'}">新增商品</li>
-	         		<li data-options="attributes:{'url':'item-list'}">查询商品</li>
-	         		<li data-options="attributes:{'url':'item-param-list'}">规格参数</li>
-	         	</ul>
-         	</li>
-         	<li>
-         		<span>网站内容管理</span>
-         		<ul>
-	         		<li data-options="attributes:{'url':'content-category'}">内容分类管理</li>
-	         		<li data-options="attributes:{'url':'content'}">内容管理</li>
+	         		<li data-options="attributes:{'url':''}">专家审批管理</li>
+	         		<li data-options="attributes:{'url':'content'}">---</li>
 	         	</ul>
          	</li>
          	
@@ -58,7 +49,7 @@
     <div data-options="region:'center',title:''">
     	<div id="tabs" class="easyui-tabs">
 		    <div title="首页" style="padding:20px;">
-		        <li data-options="attributes:{'url':'item-add'}">新增商品</li>
+		        <li data-options="attributes:{'url':'item-add'}">报表汇总，待开发...</li>
 		    </div>
 		</div>
     </div>

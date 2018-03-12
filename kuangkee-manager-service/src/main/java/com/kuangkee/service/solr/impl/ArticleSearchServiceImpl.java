@@ -39,10 +39,10 @@ public class ArticleSearchServiceImpl implements IArticleSearchService {
 		//设置默认搜素域
 		query.set("df", "article_keywords");
 		//设置高亮显示
-		query.setHighlight(true);
+//		query.setHighlight(true);
 		query.addHighlightField("article_title");
-		query.setHighlightSimplePre("<em style=\"color:red\">");
-		query.setHighlightSimplePost("</em>");
+//		query.setHighlightSimplePre("<em style=\"color:red\">");
+//		query.setHighlightSimplePost("</em>");
 		//执行查询
 		SearchResult<Article> searchResult = articleSolrSearchDao.search(query);
 		//计算查询结果总页数

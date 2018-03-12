@@ -1,14 +1,19 @@
 package com.kuangkee.service.impl;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kuangkee.common.utils.IDUtils;
+import com.kuangkee.common.utils.ftp.sftp.FtpUtil;
+import com.kuangkee.common.utils.ftp.sftp.SftpUtil;
 import com.kuangkee.service.PictureService;
 
 /**
@@ -20,6 +25,8 @@ import com.kuangkee.service.PictureService;
  */
 @Service
 public class PictureServiceImpl implements PictureService {
+	
+	private static final Logger logger = LoggerFactory.getLogger("PictureServiceImpl.class");
 	
 	@Value("${FTP_ADDRESS}")
 	private String FTP_ADDRESS;
@@ -46,11 +53,15 @@ public class PictureServiceImpl implements PictureService {
 			String newName = IDUtils.genImageName();
 			newName = newName + oldName.substring(oldName.lastIndexOf("."));
 			//图片上传
-			String imagePath = new DateTime().toString("/yyyy/MM/dd");
-//			boolean result = FtpUtil.uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, 
-//					FTP_BASE_PATH, imagePath, newName, uploadFile.getInputStream());
+//			String imagePath = new DateTime().toString("/yyyy/MM/dd");
+			String imagePath = "";
+			logger.info("上传信息：remote{}",(FTP_BASE_PATH+newName) );
+			boolean result = FtpUtil.uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, 
+					FTP_BASE_PATH, imagePath, newName, uploadFile.getInputStream());
 			
-			boolean result = true ;
+//			String source = "" ;
+//			SftpUtil.uploadFile(FTP_ADDRESS, FTP_PORT, FTP_USERNAME, FTP_PASSWORD, FTP_BASE_PATH, source);
+			
 			//返回结果
 			if(!result) {
 				resultMap.put("error", 1);

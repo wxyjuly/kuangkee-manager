@@ -63,7 +63,7 @@
 		
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
-		$.post("<%=this.getServletContext().getContextPath() %>/article/save",
+		$.post(baseProjectPath + "/article/save",
 				$("#itemAddForm").serialize(), function(data){
 			
 			if(data.status == 200){
