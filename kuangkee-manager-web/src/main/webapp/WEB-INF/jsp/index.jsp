@@ -30,7 +30,7 @@
          	<li>
          		<span>品牌管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'brand-list'}">品牌维护</li>
+	         		<li data-options="attributes:{'url':'brand-list'}">品牌维护-待完善</li>
 	         	</ul>
          	</li>
          	<li>
@@ -39,8 +39,7 @@
          	<li>
          		<span>专家维护</span>
          		<ul>
-	         		<li data-options="attributes:{'url':''}">专家审批管理</li>
-	         		<li data-options="attributes:{'url':'content'}">---</li>
+	         		<li data-options="attributes:{'url':''}">专家审批管理-待完善</li>
 	         	</ul>
          	</li>
          	

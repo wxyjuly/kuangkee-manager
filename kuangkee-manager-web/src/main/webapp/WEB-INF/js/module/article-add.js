@@ -14,7 +14,7 @@
 	function submitForm(){
 		//有效性验证
 		if(!$('#itemAddForm').form('validate')){
-			$.messager.alert('提示','表单还未填写完成!');
+			$.messager.alert('提示','文章必填数据还未填写完成!');
 			return ;
 		}
 /* 		//取商品价格，单位为“分”
@@ -25,12 +25,12 @@
 		var brandName = $("#itemAddForm [name=brandName]").attr('brand_name') ;
 		var content = $("#itemAddForm [name=content]").val() ;
 		
-		alert("errorCode:"+errorCode
-				+ ";title:"+title
-				+ ";brandId:"+brandId
-				+ ";brandName:"+brandName
-				+ ";content:"+content
-				);
+//		alert("errorCode:"+errorCode
+//				+ ";title:"+title
+//				+ ";brandId:"+brandId
+//				+ ";brandName:"+brandName
+//				+ ";content:"+content
+//				);
 /* 		$("#itemAddForm [name=errorCode]").val(errorCode); 
 		$("#itemAddForm [name=title]").val(title); 
 		//品牌ID，品牌名称
@@ -65,10 +65,10 @@
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
 		$.post(baseProjectPath + "/article/save",
 				$("#itemAddForm").serialize(), function(data){
-			
-			if(data.status == 200){
-				$.messager.alert('提示','新增文章成功!');
+			if(data.status == 200||data.status==0){
+				$.messager.alert('提示','新增文章成功,点击确认后，重新新增文章!');
 				window.close() ;
+				clearForm() ;
 			}
 		});
 	}

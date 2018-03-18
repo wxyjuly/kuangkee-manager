@@ -9,14 +9,17 @@
     	return ids;
     }
     
-    var toolbar = [{
-        text:'新增',
-        iconCls:'icon-add',
-        handler:function(){
-        	$(".tree-title:contains('新增文章')").parent().click();
-        }
-    },{
-        text:'编辑',
+    var toolbar = [
+/*    	{
+	        text:'新增',
+	        iconCls:'icon-add',
+	        handler:function(){
+	        	$(".tree-title:contains('新增文章')").parent().click();
+	        	
+	        }
+    	},*/
+    {
+        text:'编辑-待完善',
         iconCls:'icon-edit',
         handler:function(){
         	var ids = getSelectionsIds();
@@ -37,7 +40,7 @@
         			$("#itemeEditForm").form("load",data);
         			
         			// 加载文章描述
-        			$.getJSON(baseProjectPath+'/rest/item/query/item/desc/'+data.id,function(_data){
+        			$.getJSON(baseProjectPath+'/desc/'+data.id,function(_data){
         				if(_data.status == 000000){
         					//UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
         					itemEditEditor.html(_data.data.itemDesc);
@@ -45,7 +48,7 @@
         			});
         			
         			//加载文章规格
-        			$.getJSON(baseProjectPath +'/rest/item/param/item/query/'+data.id,function(_data){
+        			$.getJSON(baseProjectPath +'/query/'+data.id,function(_data){
         				if(_data && _data.status == 000000 && _data.data && _data.data.paramData){
         					$("#itemeEditForm .params").show();
         					$("#itemeEditForm [name=itemParams]").val(_data.data.paramData);
@@ -83,7 +86,7 @@
         	}).window("open");
         }
     },{
-        text:'删除',
+        text:'删除--待完善',
         iconCls:'icon-cancel',
         handler:function(){
         	var ids = getSelectionsIds();
@@ -94,7 +97,7 @@
         	$.messager.confirm('确认','确定删除ID为 '+ids+' 的文章吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post(baseProjectPath+"/rest/item/delete",params, function(data){
+                	$.post(baseProjectPath+"/article/delete",params, function(data){
             			if(data.status == 000000){
             				$.messager.alert('提示','删除文章成功!',undefined,function(){
             					$("#articleList").datagrid("reload");

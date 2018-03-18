@@ -139,7 +139,7 @@ public class ArticleController {
 	}
 	
 	/**
-	 * articleUnStock:文章不可搜索. <br/>
+	 * articleUnStock:文章状态职位不可读. <br/>
 	 * @author Leon Xi
 	 * @param page
 	 * @param rows
