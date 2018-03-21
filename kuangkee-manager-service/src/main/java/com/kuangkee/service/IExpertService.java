@@ -53,4 +53,6 @@ public interface IExpertService {
 	 */
 	List<ExpertResp> getExpertReq(int page, int rows) ;
 	
+	boolean updateExpert(Expert record) ;
+	
 }

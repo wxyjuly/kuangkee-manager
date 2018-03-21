@@ -8,6 +8,7 @@
     <result column="brandId" property="brandId" jdbcType="BIGINT" />
     <result column="brandName" property="brandName" jdbcType="VARCHAR" />
   </resultMap>
+  
   <sql id="ExpertBrands_Column_List" >
     t1.id id,t3.id brandId,t3.name brandName
   </sql>
@@ -26,4 +27,62 @@
 	AND t1.id = t2.expert_brands_id
 	AND t2.brand_id = t3.id	
   </select>
+  
+    <update id="updateExpertExtBySelective" parameterType="map" >
+    update t_expert
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=BIGINT},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agencyShopName != null" >
+        agency_shop_name = #{record.agencyShopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currStatus != null" >
+        curr_status = #{record.currStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        wechat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.agencyShop != null" >
+        agency_shop = #{record.agencyShop,jdbcType=BIT},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lat != null" >
+        lat = #{record.lat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lng != null" >
+        lng = #{record.lng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.cousultTimes != null" >
+        cousult_times = cousult_times + 1,
+      </if>
+      <if test="record.info != null" >
+        info = #{record.info,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+      where id = #{record.id,jdbcType=BIGINT}
+  </update>
+  
+  
+  
 </mapper>

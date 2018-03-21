@@ -49,13 +49,16 @@ public class ExpertServiceImpl implements IExpertService {
 		// 添加分页
 		PageHelper.startPage(page, rows);
 		ExpertExample example = buildExpertExample(record);
+		ExpertExample.Criteria criteria = example.createCriteria() ;
+		criteria.andCurrStatusEqualTo(1) ;
+		example.setOrderByClause("cousult_times desc");
+		
 		List<Expert> list = expertMapper.selectByExampleWithBLOBs(example) ;
 		return list;
 	}
 	
 	private ExpertExample buildExpertExample(ExpertReq record) {
 		ExpertExample example = new ExpertExample() ;
-		example.setOrderByClause("cousult_times desc");
 		return example;
 	}
 	
@@ -109,6 +112,16 @@ public class ExpertServiceImpl implements IExpertService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public boolean updateExpert(Expert record) {
+		 boolean flag = false ;
+		 int cnt = expertExtMapper.updateExpertExtBySelective(record) ;
+		 if(cnt>0) {
+			 flag = true ;
+		 }
+		 return flag ;
 	}
 
 }
