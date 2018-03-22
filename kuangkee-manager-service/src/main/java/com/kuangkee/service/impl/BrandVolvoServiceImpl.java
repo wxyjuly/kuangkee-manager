@@ -77,7 +77,12 @@ public class BrandVolvoServiceImpl implements IBrandVolvoService {
 	public List<BrandVolvo> qryByType(BrandVolvo record) {
 		BrandVolvoExample example = buildExpertExample(record);
 		
-		List<BrandVolvo> list = brandVolvoMapper.selectByExample(example) ;
+		List<BrandVolvo> list = null ;
+		try {
+			list = brandVolvoMapper.selectByExample(example);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 	
