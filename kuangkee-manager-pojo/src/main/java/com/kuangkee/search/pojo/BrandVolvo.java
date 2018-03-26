@@ -192,4 +192,10 @@ public class BrandVolvo {
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
     }
+
+	@Override
+	public String toString() {
+		return "BrandVolvo [id=" + id + ", partid=" + partid + ", brandId=" + brandId + ", brandName=" + brandName
+				+ ", errorCode=" + errorCode + ", title=" + title + "]";
+	}
 }
