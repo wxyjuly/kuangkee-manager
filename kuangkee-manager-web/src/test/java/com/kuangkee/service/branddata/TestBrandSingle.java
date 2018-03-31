@@ -38,7 +38,7 @@ public class TestBrandSingle {
 	public void testImportBrandDouShan() throws IOException {
 		buildSingleBean(OneBrandBuilder.BRAND_DOUSHAN_ID) ;
 	}
-	//为导入成功
+	
 	@Test
 	public void testImportBrandJiaTeng() throws IOException {
 		buildSingleBean(OneBrandBuilder.BRAND_JIATENG_ID) ;
@@ -53,10 +53,12 @@ public class TestBrandSingle {
 	public void testImportBrandKangMingSi() throws IOException {
 		buildSingleBean(OneBrandBuilder.BRAND_KANGMINGSI_ID) ;
 	}
+	
 	@Test
 	public void testImportBrandRiLi() throws IOException {
 		buildSingleBean(OneBrandBuilder.BRAND_RILI_ID) ;
 	}
+	
 	@Test
 	public void testImportBrandSanYi() throws IOException {
 		buildSingleBean(OneBrandBuilder.BRAND_SANYI_ID) ;
@@ -67,6 +69,7 @@ public class TestBrandSingle {
 	public void testImportBrandShengang() throws IOException {
 		buildSingleBean(OneBrandBuilder.BRAND_SHENGGANG_ID) ;
 	}
+	
 	@Test
 	public void testImportBrandXianDai() throws IOException {
 		buildSingleBean(OneBrandBuilder.BRAND_XIANDAI_ID) ;
