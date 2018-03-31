@@ -21,7 +21,7 @@ import com.kuangkee.search.pojo.BrandSingle;
 import com.kuangkee.service.IBrandSingleService;
 
 /**
- * 保存相关的品牌数据
+ * 保存相关的品牌数据,唯一一个值
  * ClassName: TestBrandSingle <br/>
  * date: 2018年3月26日 下午4:03:10 <br/>
  * @author Leon Xi

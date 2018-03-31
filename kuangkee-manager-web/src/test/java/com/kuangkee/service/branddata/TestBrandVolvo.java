@@ -28,10 +28,6 @@ public class TestBrandVolvo {
 	
 	@Test
 	public void testImportAllData() throws IOException {
-		
-//		List<BrandArticleImportBean> records = VolvoBuilder.buildVolvoBean() ;
-		
-//		System.out.println(result);
 		buildVolvoBean() ;
 	}
 
