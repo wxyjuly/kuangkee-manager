@@ -33,7 +33,7 @@ public class TestArticle {
 	/**
 	 * 批量查询并插入文章
 	 */
-	@Test
+//	@Test
 	public void testArticleImportAll2Solr() {
 		KuangkeeResult kuangkeeResult = articleSolrService.importAllArticles2Solr(null) ;
 		System.out.println(kuangkeeResult);
