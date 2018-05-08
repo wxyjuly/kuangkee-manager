@@ -25,11 +25,16 @@ public class TestBrandCat {
 	@Autowired
 	IBrandVolvoService brandVolvoService ;
 	
-	@Test
+//	@Test
 	public void testImportCat() throws IOException {
 		buildCatBean(CATBuilder.MID_EXCEL_PATH) ;
 		buildCatBean(CATBuilder.CID_EXCEL_PATH) ;
 		buildCatBean(CATBuilder.FMI_EXCEL_PATH) ;
+	}
+	
+	@Test
+	public void testNull() {
+		
 	}
 
 	@SuppressWarnings("unused")
