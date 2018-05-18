@@ -47,7 +47,7 @@
     </javaClientGenerator>
 
 	<!-- 指定要逆向分析哪些表：根据表要创建javaBean -->
-    <table tableName="tb_brand_single_code" domainObjectName="BrandSingle"></table>
+    <table tableName="tb_user_search_log" domainObjectName="UserSearchLog"></table>
 <!--     <table tableName="tb_article_desc" domainObjectName="ArticleDesc"></table>
     <table tableName="tb_brand" domainObjectName="Brand"></table>
     <table tableName="tb_user_search_log" domainObjectName="UserSearchLog"></table> -->
