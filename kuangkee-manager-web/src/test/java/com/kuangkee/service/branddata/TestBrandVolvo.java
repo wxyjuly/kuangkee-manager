@@ -23,10 +23,15 @@ import com.kuangkee.service.IBrandVolvoService;
 @ContextConfiguration({ "classpath:spring/applicationContext-*.xml" })
 public class TestBrandVolvo {
 	
+	@Test
+	public void testNull() {
+		
+	}
+	
 	@Autowired
 	IBrandVolvoService brandVolvoService ;
 	
-	@Test
+//	@Test
 	public void testImportAllData() throws IOException {
 		buildVolvoBean() ;
 	}
