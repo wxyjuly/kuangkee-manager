@@ -18,7 +18,6 @@ public interface IWechatService {
 	/**
 	 * 
 	 * getAndRefreshAccessToken:获取或者刷新AccessToken. <br/>
-	 *
 	 * @author Leon Xi
 	 * @param request
 	 * @param type : 类型(1:session失效刷新，2：后台定时调度刷新)
