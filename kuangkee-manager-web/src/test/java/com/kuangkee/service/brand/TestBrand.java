@@ -20,7 +20,7 @@ public class TestBrand {
 	@Autowired
 	IBrandService brandService ;
 	
-	@Test
+//	@Test
 	public void testQryAllBrand() {
 		List<Brand> brands = brandService.getAllBrand() ;
 		for (Brand brand : brands) {
@@ -31,7 +31,7 @@ public class TestBrand {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void testGetBrandListByPage() {
 		int page = 1 ;
 		int rows = 10;

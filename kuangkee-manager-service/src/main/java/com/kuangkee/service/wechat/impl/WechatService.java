@@ -7,11 +7,12 @@
  *
 */
 
-package com.kuangkee.service.wechat;
+package com.kuangkee.service.wechat.impl;
 
 import org.apache.http.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import com.kuangkee.common.pojo.common.wechat.AccessTokenInfo;
 import com.kuangkee.common.pojo.common.wechat.WechatOpenId;
@@ -19,6 +20,7 @@ import com.kuangkee.common.pojo.common.wechat.WechatUserInfo;
 import com.kuangkee.common.pojo.common.wechat.Wechat_Constants;
 import com.kuangkee.common.utils.httpclient.HttpClientUtil;
 import com.kuangkee.common.utils.json.JsonUtils;
+import com.kuangkee.service.wechat.IWechatService;
 
 /**
  * ClassName:WechatService <br/>
@@ -27,6 +29,7 @@ import com.kuangkee.common.utils.json.JsonUtils;
  * @version  v1.0
  * @see 	 
  */
+@Service
 public class WechatService implements IWechatService {
 	
 	Logger log = LoggerFactory.getLogger(WechatService.class) ;

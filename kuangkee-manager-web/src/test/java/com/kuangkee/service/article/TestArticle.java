@@ -43,7 +43,7 @@ public class TestArticle {
 	 * testGetArtilceById:通过文章Id查询文章明细. <br/>
 	 * @author Leon Xi
 	 */
-	@Test
+//	@Test
 	public void testGetArtilceById() {
 		Article article = new Article(); 
 		article.setArticleId(151970492958748L);
@@ -52,7 +52,7 @@ public class TestArticle {
 		System.err.println(articleR);
 	}
 	
-	@Test
+//	@Test
 	public void testQryArticleListBack() {
 		int page = 0 ;
 		int rows = 30 ;
@@ -61,7 +61,7 @@ public class TestArticle {
 		System.err.println(result.getTotal());
 	}
 	
-	@Test
+//	@Test
 	public void testQryArticleListCommon() {
 		int page = 1 ;  //参数不能为0
 		int rows = 30 ;
@@ -77,7 +77,7 @@ public class TestArticle {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void testUpdateArticleBatchStatus() {
 		String ids = "151970492958748,151970495456105" ;
 		List<Long> idLists = new ArrayList<>() ;

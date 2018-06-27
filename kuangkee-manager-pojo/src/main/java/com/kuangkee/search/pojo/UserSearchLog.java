@@ -523,11 +523,5 @@ public class UserSearchLog {
 				+ ", longitude=" + longitude + ", latitude=" + latitude + ", ip=" + ip + ", createTime=" + createTime
 				+ ", updateTime=" + updateTime + "]";
 	}
-
-	public void setMerchantId(String from) {
-		
-		// TODO Auto-generated method stub
-		
-	}
     
 }

@@ -1,4 +1,4 @@
-package com.kuangkee.service.wechat ;
+
 
 import org.apache.http.HttpRequest;
 

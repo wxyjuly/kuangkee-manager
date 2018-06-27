@@ -24,7 +24,7 @@ public class TestAccount {
 	 * testGetAccountById:通过uId查询用户明细. <br/>
 	 * @author Leon Xi
 	 */
-	@Test
+//	@Test
 	public void testGetAccountById() {
 		Long uId = 1L ;
 		
