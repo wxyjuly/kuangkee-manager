@@ -28,7 +28,7 @@ public class MBTableGenerated {
 	 * @author Leon Xi
 	 * @throws Exception
 	 */
-	@Test
+//	@Test
 	public void generateKuangKeeTables() throws Exception {
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
