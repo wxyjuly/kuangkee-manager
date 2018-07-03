@@ -37,4 +37,6 @@ public interface IAccountService {
 	 */
 	boolean updateAccountInfo(Account account) ;
 	
+	
+	boolean saveAccountInfoAndRefreshCache(String key , Account account) ;
 }

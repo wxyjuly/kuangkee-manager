@@ -7,8 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.druid.sql.dialect.oracle.ast.clause.FlashbackQueryClause;
 import com.kuangkee.common.utils.check.MatchUtil;
+import com.kuangkee.common.utils.json.JsonUtils;
+import com.kuangkee.dao.redis.JedisClient;
 import com.kuangkee.search.mapper.generate.AccountMapper;
 import com.kuangkee.search.pojo.Account;
 import com.kuangkee.search.pojo.AccountExample;
@@ -26,8 +27,11 @@ public class AccountServiceImpl implements IAccountService {
 	private static final Logger logger = LoggerFactory.getLogger("AccountServiceImpl.class");
 
 	@Autowired
-	public AccountMapper accountMapper;
-
+	private AccountMapper accountMapper;
+	
+	@Autowired
+	private JedisClient jedisClient ;
+	
 	@Override
 	public Account getAccountByUId(Long uId) {
 
@@ -75,7 +79,6 @@ public class AccountServiceImpl implements IAccountService {
 
 	@Override
 	public boolean saveAccountInfo(Account account) {
-		
 		int cnt = accountMapper.insertSelective(account) ;
 		if(cnt>0) {
 			return true ;
@@ -173,6 +176,16 @@ public class AccountServiceImpl implements IAccountService {
 			criteria.andUnionidEqualTo(unionId) ;
 		}
 		return example;
+	}
+
+	@Override
+	public boolean saveAccountInfoAndRefreshCache(String key , Account account) {
+		//save to DB 
+		boolean flag = saveAccountInfo(account) ;
+		//save to session
+		jedisClient.set(key, JsonUtils.objectToJson(account)) ;
+		
+		return flag ;
 	}
 
 }

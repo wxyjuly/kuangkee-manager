@@ -1,10 +1,8 @@
 package com.kuangkee.service.impl;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kuangkee.common.utils.IDUtils;
 import com.kuangkee.common.utils.ftp.sftp.FtpUtil;
-import com.kuangkee.common.utils.ftp.sftp.SftpUtil;
 import com.kuangkee.service.PictureService;
 
 /**

@@ -12,6 +12,8 @@ package com.kuangkee.service.wechat.impl;
 import org.apache.http.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.kuangkee.common.pojo.common.wechat.AccessTokenInfo;
@@ -20,6 +22,8 @@ import com.kuangkee.common.pojo.common.wechat.WechatUserInfo;
 import com.kuangkee.common.pojo.common.wechat.Wechat_Constants;
 import com.kuangkee.common.utils.httpclient.HttpClientUtil;
 import com.kuangkee.common.utils.json.JsonUtils;
+import com.kuangkee.common.utils.wechat.WechatUtil;
+import com.kuangkee.dao.redis.JedisClient;
 import com.kuangkee.service.wechat.IWechatService;
 
 /**
@@ -33,6 +37,16 @@ import com.kuangkee.service.wechat.IWechatService;
 public class WechatService implements IWechatService {
 	
 	Logger log = LoggerFactory.getLogger(WechatService.class) ;
+	
+	
+	@Autowired
+	private JedisClient jedisClient;
+	
+	@Value("${REDIS_ACCESS_TOKEN_KEY}")
+	private String REDIS_ACCESS_TOKEN_KEY;
+	
+	@Value("${REDIS_ACCESS_TOKEN_EXPIRE}")
+	private Integer REDIS_ACCESS_TOKEN_EXPIRE;
 
 	@Override
 	public AccessTokenInfo getAndRefreshAccessToken(HttpRequest request, String type) {
@@ -84,5 +98,23 @@ public class WechatService implements IWechatService {
 		return userInfo;
 	}
 
-}
+	@Override
+	public void genetateAccessToken() {
+		String accessToken = WechatUtil.getAccessToken() ;
+		//把用户信息写入redis
+		jedisClient.set(REDIS_ACCESS_TOKEN_KEY, accessToken);
+		//设置session的过期时间
+		jedisClient.expire(REDIS_ACCESS_TOKEN_KEY, REDIS_ACCESS_TOKEN_EXPIRE);
+	}
 
+	@Override
+	public String getAccessToken(String token) {
+		return getValueByKey(token) ;
+	}
+
+	@Override
+	public String getValueByKey(String key) {
+		return jedisClient.get(key) ;
+	}
+
+}

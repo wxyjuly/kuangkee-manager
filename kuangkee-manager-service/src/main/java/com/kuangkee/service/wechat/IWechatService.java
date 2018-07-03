@@ -42,4 +42,20 @@ public interface IWechatService {
 	 */
 	public WechatUserInfo getUserInfo(String openId, String accessToken) ;
 	
+	/**
+	 * genetateAccessToken:定时调度刷新access_token. <br/>
+	 * @author Leon Xi
+	 */
+	public void genetateAccessToken() ;
+	
+	/**
+	 * getAccessToken:获取token. <br/>
+	 * @author Leon Xi
+	 * @param token : openId
+	 * @return
+	 */
+	public String getAccessToken(String token) ;
+	
+	public String getValueByKey(String key) ;
+	
 }

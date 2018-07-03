@@ -108,7 +108,7 @@ public class ArticleServiceImpl implements IArticleService {
 			String title = record.getTitle();
 	
 			String subTitle = record.getSubTitle();
-			String url = record.getUrl();
+//			String url = record.getUrl();
 			String sourceUrl = record.getSourceUrl();
 			// String content = record.getContent() ;
 			String isSearchable = record.getIsSearchable();
