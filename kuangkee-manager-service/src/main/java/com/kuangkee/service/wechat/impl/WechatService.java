@@ -38,7 +38,6 @@ public class WechatService implements IWechatService {
 	
 	Logger log = LoggerFactory.getLogger(WechatService.class) ;
 	
-	
 	@Autowired
 	private JedisClient jedisClient;
 	
@@ -101,6 +100,7 @@ public class WechatService implements IWechatService {
 	@Override
 	public void genetateAccessToken() {
 		String accessToken = WechatUtil.getAccessToken() ;
+System.out.println("AccessToken:" + accessToken);
 		//把用户信息写入redis
 		jedisClient.set(REDIS_ACCESS_TOKEN_KEY, accessToken);
 		//设置session的过期时间

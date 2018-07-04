@@ -2,9 +2,11 @@ package com.kuangkee.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.kuangkee.common.utils.check.MatchUtil;
@@ -26,6 +28,13 @@ public class AccountServiceImpl implements IAccountService {
 
 	private static final Logger logger = LoggerFactory.getLogger("AccountServiceImpl.class");
 
+	
+	@Value("${REDIS_ACCOUNT_KEY}")
+	private String REDIS_ACCOUNT_KEY;
+	
+	@Value("${REDIS_ACCOUNT_EXPIRE}")
+	private Integer REDIS_ACCOUNT_EXPIRE;
+	
 	@Autowired
 	private AccountMapper accountMapper;
 	
@@ -186,6 +195,26 @@ public class AccountServiceImpl implements IAccountService {
 		jedisClient.set(key, JsonUtils.objectToJson(account)) ;
 		
 		return flag ;
+	}
+
+	@Override
+	public Account getAccountInfoFromCache(String key) {
+		String accountTmp = jedisClient.get(REDIS_ACCOUNT_KEY + ":" + key) ;
+		
+		return JsonUtils.jsonToPojo(accountTmp, Account.class) ;
+	}
+
+	@Override
+	public Account getAccountByToken(String token) {
+		//根据token从redis中查询用户信息
+		String json = jedisClient.get(REDIS_ACCOUNT_KEY + ":" + token);
+		//判断是否为空
+		if (StringUtils.isBlank(json)) {
+			return null;	// "此session已经过期，请重新登录"
+		}
+		//更新过期时间
+		jedisClient.expire(REDIS_ACCOUNT_KEY + ":" + token, REDIS_ACCOUNT_EXPIRE);
+		return JsonUtils.jsonToPojo(json, Account.class) ;
 	}
 
 }

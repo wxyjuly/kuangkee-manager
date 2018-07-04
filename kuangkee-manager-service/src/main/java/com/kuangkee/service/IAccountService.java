@@ -39,4 +39,9 @@ public interface IAccountService {
 	
 	
 	boolean saveAccountInfoAndRefreshCache(String key , Account account) ;
+	
+	Account getAccountInfoFromCache(String key) ;
+	
+	Account getAccountByToken(String token)  ;
+	
 }
